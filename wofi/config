@@ -1,0 +1,7 @@
+allow_images = true
+image_size = 25
+prompt=
+normal_window = true
+
+matching=fuzzy
+insensitive=true

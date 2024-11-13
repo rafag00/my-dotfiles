@@ -1,0 +1,3 @@
+/etc/nanorc
+
+/root/.nanorc

@@ -1,0 +1,40 @@
+include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano-syntax-highlighting/*.nanorc"
+
+set autoindent
+set constantshow
+set indicator
+set linenumbers
+set minibar
+set multibuffer
+set positionlog
+set smarthome
+set softwrap
+set stateflags
+set tabsize 4
+set tabstospaces
+set mouse
+ 
+bind ^Z undo main
+bind ^Y redo main
+bind ^R cancel yesno
+bind ^X cut all
+bind M-C copy all
+bind M-V paste all
+bind ^Q exit all
+bind ^F whereis all
+bind ^G findnext all
+bind ^B wherewas all
+bind ^D findprevious all
+bind ^R replace main
+bind ^S writeout main
+bind ^O insert main
+bind M-X flipnewbuffer all
+bind ^T gotoline main
+bind ^T gotodir browser
+bind ^L speller main
+unbind M-J main
+unbind M-T main
+unbind ^V all
+unbind ^K all
+unbind ^U all
