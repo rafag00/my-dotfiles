@@ -4,6 +4,7 @@
 - pywal
 - hypridle
 - hyprlock
+- hyprshot
 - wofi
 - hyprpanel
 - fastfetch
