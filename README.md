@@ -14,8 +14,8 @@
 - nwg-look (Custumize different GTK apps uniformly)
 
 ## Configs to add
-[ ] - hyprland
-[ ] - wofi
-[ ] - hyprpanel
-[ ] - bashrc
-[ ] - nanorc
+- [ ] hyprland
+- [ ] wofi
+- [ ] hyprpanel
+- [ ] bashrc
+- [ ] nanorc
