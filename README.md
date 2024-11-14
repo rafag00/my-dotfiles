@@ -17,6 +17,6 @@
 ## Configs to add
 - [x] hyprland
 - [x] wofi
-- [ ] hyprpanel
+- [x] hyprpanel
 - [x] bashrc
 - [x] nanorc
