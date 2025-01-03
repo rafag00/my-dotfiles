@@ -1,9 +1,0 @@
-allow_images = true
-image_size = 25
-normal_window = true
-
-matching=fuzzy
-insensitive=true
-show_all=true
-layer=overlay
-insensitive=true

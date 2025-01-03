@@ -5,7 +5,7 @@
 - hypridle
 - hyprlock
 - hyprshot
-- wofi
+- rofi-wayland
 - hyprpanel
 - fastfetch
 - nwg-dock-hyprland
@@ -16,7 +16,7 @@
 
 ## Configs to add
 - [x] hyprland
-- [x] wofi
+- [x] rofi-wayland
 - [x] hyprpanel
 - [x] bashrc
 - [x] nanorc

@@ -1,5 +1,6 @@
 {
   "bar.customModules.updates.pollingInterval": 1440000,
+  "wallpaper.pywal": true,
   "theme.font.name": "Hack Nerd Font Propo",
   "theme.font.size": "0.9rem",
   "menus.transition": "crossfade",
@@ -9,10 +10,9 @@
   "menus.clock.time.military": true,
   "menus.clock.time.hideSeconds": true,
   "menus.clock.weather.location": "Coimbra",
-  "menus.dashboard.powermenu.avatar.image": "/home/rafag00/Downloads/dead_inside.png",
+  "menus.dashboard.powermenu.avatar.image": "/home/rafag00/my-hyprland-dotfiles/hyprpanel/dead_inside.png",
   "theme.bar.menus.monochrome": true,
-  "wallpaper.pywal": true,
-  "wallpaper.image": "",
+  "wallpaper.image": "/home/rafag00/my-hyprland-dotfiles/hyprpanel/astronaut_jellyfish.jpg",
   "theme.bar.menus.opacity": 100,
   "theme.matugen": false,
   "theme.matugen_settings.mode": "dark",
@@ -20,7 +20,7 @@
   "theme.matugen_settings.variation": "standard_1",
   "theme.bar.transparent": true,
   "theme.bar.buttons.modules.ram.enableBorder": false,
-  "menus.clock.weather.enabled": true,
+  "menus.clock.weather.enabled": false,
   "menus.bluetooth.batteryState": "connected",
   "menus.power.showLabel": true,
   "theme.bar.buttons.dashboard.enableBorder": false,
@@ -251,7 +251,7 @@
       ]
     }
   ],
-  "tear": false,
+  "tear": true,
   "wallpaper.enable": true,
   "theme.bar.menus.menu.network.scaling": 100,
   "bar.layouts": {
@@ -273,6 +273,25 @@
         "battery",
         "notifications",
         "power"
+      ]
+    },
+    "1": {
+      "left": [
+        "dashboard",
+        "clock",
+        "media"
+      ],
+      "middle": [
+        "workspaces"
+      ],
+      "right": [
+        "systray",
+        "network",
+        "bluetooth",
+        "volume",
+        "hyprsunset",
+        "battery",
+        "notifications"
       ]
     }
   },
@@ -341,5 +360,6 @@
   "menus.bluetooth.showBattery": true,
   "theme.bar.border.location": "none",
   "theme.bar.buttons.volume.spacing": "0.2em",
-  "theme.bar.buttons.bluetooth.spacing": "0.5em"
+  "theme.bar.buttons.bluetooth.spacing": "0.5em",
+  "bar.autoHide": "never"
 }

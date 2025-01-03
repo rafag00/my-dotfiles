@@ -5,9 +5,9 @@
 # -----------------------------------------------------
 # Oh-My-Posh Prompt
 # -----------------------------------------------------
-eval "$(oh-my-posh init bash --config ~/.config/bashrc/tokyo.omp.json)"
+eval "$(oh-my-posh init bash --config ~/tokyo.omp.json)"
 eval "$(thefuck --alias)"
 source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
-fastfetch --config examples/13
-#fastfetch -c ~/.config/fastfetch/config.jsonc
+(sleep 0.2 && fastfetch --config examples/13)
+#fastfetch -c ~/.config/fastfetch/config.json

@@ -16,9 +16,15 @@
 # with copies of files from ~/.config/zshrc 
 # -----------------------------------------------------
 
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 for f in ~/.config/bashrc/*; do 
     if [ ! -d $f ] ;then
         c=`echo $f | sed -e "s=.config/bashrc=.config/bashrc/custom="`
         [[ -f $c ]] && source $c || source $f
     fi
 done
+
