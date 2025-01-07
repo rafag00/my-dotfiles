@@ -52,7 +52,7 @@
   "bar.clock.showIcon": false,
   "bar.clock.showTime": true,
   "theme.bar.buttons.media.enableBorder": false,
-  "bar.clock.format": "%H:%M",
+  "bar.clock.format": "%d/%m/%Y - %H:%M",
   "theme.bar.buttons.notifications.enableBorder": false,
   "bar.notifications.show_total": true,
   "bar.notifications.hideCountWhenZero": true,
