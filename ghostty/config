@@ -1,0 +1,57 @@
+# Window settings
+window-decoration = true
+window-inherit-working-directory = true
+window-theme = dark
+window-save-state = always
+
+# Mouse settings
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+focus-follows-mouse = true
+
+#Other settings
+clipboard-trim-trailing-spaces = true
+
+# Font and cursor settings
+font-family = NotoMono Nerd Font
+font-size = 10
+cursor-style = block
+cursor-style-blink = false
+
+# Background and transparency settings
+background = #2e3440
+foreground = #d8dee9
+background-opacity = 0.75
+background-blur = true
+
+#selection-foreground = #ffffff
+#selection-background = #44475a
+#cursor-color = #f8f8f2
+
+palette = 0=#3b4252
+palette = 1=#bf616a
+palette = 2=#a3be8c
+palette = 3=#ebcb8b
+palette = 4=#81a1c1
+palette = 5=#b48ead
+palette = 6=#88c0d0
+palette = 7=#d8dee9
+
+#Keybinds
+#alt + shift for split resizing
+#alt+s>left right up down to create a new split
+#alt+s>z toggle zoom
+#alt+s>w close split
+keybind = alt+shift+up=resize_split:up,10
+keybind = alt+shift+down=resize_split:down,10
+keybind = alt+shift+right=resize_split:right,10
+keybind = alt+shift+left=resize_split:left,10
+keybind = alt+shift+plus=equalize_splits
+
+keybind = alt+s>up=new_split:up
+keybind = alt+s>down=new_split:down
+keybind = alt+s>right=new_split:right
+keybind = alt+s>left=new_split:left
+
+keybind = ctrl+w=close_surface
+keybind = alt+s>z=toggle_split_zoom
