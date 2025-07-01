@@ -86,6 +86,12 @@
           "style": "diamond",
           "template": "[{{ if .Error }}{{ .Error }}{{ else }}{{ if .Name }}<#ffffff>\uf487</> {{ .Name }}{{ end }}{{ if .Target }} {{ .Target }}{{ end }}{{ end }}]",
           "type": "project"
+        },
+        {
+          "foreground": "#7eb8da",
+          "style": "diamond",
+          "template": "[<#ffffff> </> <#ffff00>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}</>] ",
+          "type": "python"
         }
       ],
       "type": "prompt"
