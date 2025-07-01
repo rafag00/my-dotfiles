@@ -1,4 +1,6 @@
-# my-hyprland-dotfiles
+# my-dotfiles
+
+# To Be Updated with NixOS configs (new old folder and new files)
 
 ## Need to have instaled
 - pywal
