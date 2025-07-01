@@ -1,12 +1,12 @@
-# Window settings
 window-decoration = true
 window-inherit-working-directory = true
 window-theme = dark
 window-save-state = always
+shell-integration = bash
 
 # Mouse settings
 mouse-hide-while-typing = true
-copy-on-select = clipboard
+#copy-on-select = clipboard
 focus-follows-mouse = true
 
 #Other settings
@@ -17,6 +17,9 @@ font-family = NotoMono Nerd Font
 font-size = 10
 cursor-style = block
 cursor-style-blink = false
+#alt+click
+cursor-click-to-move = true
+shell-integration-features = no-cursor
 
 # Background and transparency settings
 background = #2e3440
