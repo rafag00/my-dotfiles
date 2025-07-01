@@ -2,10 +2,12 @@ include "/usr/share/nano/*.nanorc"
 include "/usr/share/nano-syntax-highlighting/*.nanorc"
 
 set autoindent
+set breaklonglines
 set constantshow
 set indicator
 set linenumbers
 set minibar
+set mouse
 set multibuffer
 set positionlog
 set smarthome
@@ -13,7 +15,6 @@ set softwrap
 set stateflags
 set tabsize 4
 set tabstospaces
-set mouse
  
 bind ^Z undo main
 bind ^Y redo main
