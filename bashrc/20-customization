@@ -5,9 +5,14 @@
 # -----------------------------------------------------
 # Oh-My-Posh Prompt
 # -----------------------------------------------------
+
+#fzf for arch
+#source /usr/share/fzf/key-bindings.bash 
+#source /usr/share/fzf/completion.bash
+
+#fzf for fedora
+source /usr/share/fzf/shell/key-bindings.bash
+
 eval "$(oh-my-posh init bash --config ~/tokyo.omp.json)"
-eval "$(thefuck --alias)"
-source /usr/share/fzf/key-bindings.bash
-source /usr/share/fzf/completion.bash
-(sleep 0.2 && fastfetch --config examples/13)
-#fastfetch -c ~/.config/fastfetch/config.json
+
+fastfetch -c ~/.config/fastfetch/config.json
