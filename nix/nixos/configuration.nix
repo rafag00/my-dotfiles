@@ -36,6 +36,20 @@
   # Set your time zone.
   time.timeZone = "Europe/Lisbon";
 
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "pt_PT.UTF-8";
+    LC_IDENTIFICATION = "pt_PT.UTF-8";
+    LC_MEASUREMENT = "pt_PT.UTF-8";
+    LC_MONETARY = "pt_PT.UTF-8";
+    LC_NAME = "pt_PT.UTF-8";
+    LC_NUMERIC = "pt_PT.UTF-8";
+    LC_PAPER = "pt_PT.UTF-8";
+    LC_TELEPHONE = "pt_PT.UTF-8";
+    LC_TIME = "pt_PT.UTF-8";
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -63,13 +77,21 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  # Enable sound with pipewire.
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
