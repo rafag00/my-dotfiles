@@ -4,41 +4,43 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ ];
+  imports =
+    [ (modulesPath + "/installer/scan/not-detected.nix")
+    ];
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "ohci_pci" "ehci_pci" "ahci" "sd_mod" "sr_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/dc95f7c6-2358-4f52-8670-6f15a09f8886";
+    { device = "/dev/disk/by-uuid/11590052-ea73-4363-995a-21d297abb25a";
       fsType = "btrfs";
       options = [ "subvol=root" ];
     };
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/211f0f85-2c93-4f7d-959c-f1f9ecf25cf8";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/ac230ddf-ef55-4dd9-9d78-9d37c7dd6f98";
 
   fileSystems."/.swapvol" =
-    { device = "/dev/disk/by-uuid/dc95f7c6-2358-4f52-8670-6f15a09f8886";
+    { device = "/dev/disk/by-uuid/11590052-ea73-4363-995a-21d297abb25a";
       fsType = "btrfs";
       options = [ "subvol=swap" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2C35-231E";
+    { device = "/dev/disk/by-uuid/7376-675E";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/dc95f7c6-2358-4f52-8670-6f15a09f8886";
+    { device = "/dev/disk/by-uuid/11590052-ea73-4363-995a-21d297abb25a";
       fsType = "btrfs";
       options = [ "subvol=home" ];
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/dc95f7c6-2358-4f52-8670-6f15a09f8886";
+    { device = "/dev/disk/by-uuid/11590052-ea73-4363-995a-21d297abb25a";
       fsType = "btrfs";
       options = [ "subvol=nix" ];
     };
@@ -50,8 +52,9 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.enp0s3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  virtualisation.virtualbox.guest.enable = true;
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

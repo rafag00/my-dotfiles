@@ -8,10 +8,6 @@
             username = "rafag00";
             homeDirectory = "/home/rafag00";
             stateVersion = "25.05";
-
-            packages = with pkgs; [
-                fastfetch
-            ];
     };
 
 }
