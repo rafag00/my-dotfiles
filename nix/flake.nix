@@ -10,9 +10,15 @@
         };
 
         nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+        lanzaboote = {
+            url = "github:nix-community/lanzaboote/v0.4.2";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
     };
 
-    outputs = { nixpkgs, home-manager, nix-flatpak, ... }:
+    outputs = { nixpkgs, home-manager, nix-flatpak, lanzaboote, ... }:
         let
             system = "x86_64-linux";
         in {
@@ -20,6 +26,7 @@
                 inherit system;
                 modules = [ 
                     nix-flatpak.nixosModules.nix-flatpak
+                    lanzaboote.nixosModules.lanzaboote
                     ./nixos/configuration.nix 
                     ./nixos/flatpak.nix
                 ];

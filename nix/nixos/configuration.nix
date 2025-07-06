@@ -4,10 +4,8 @@
     ./hardware-configuration.nix
     ./packages.nix
     ./modules/bundle.nix
+    ./modules/plasma.nix
   ];
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -38,38 +36,26 @@
     LC_TIME = "pt_PT.UTF-8";
   };
 
+  #programs.uwsm.enable = true;
 
-  #MODIFY ACCORDING TO NEW SITE
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
+
   xdg = {
     autostart.enable = true;
     portal = {
       enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal
-        pkgs.xdg-desktop-portal-gtk
-        pkgs.xdg-desktop-portal-gnome
-        pkgs.kdePackages.xdg-desktop-portal-kde
-        pkgs.libsForQt5.xdg-desktop-portal-kde
+      extraPortals = with pkgs; [
+        xdg-desktop-portal
+        xdg-desktop-portal-gtk
+        #xdg-desktop-portal-gnome
       ];
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    xdg-utils
-    xdg-desktop-portal
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-gnome
-    kdePackages.xdg-desktop-portal-kde
-    libsForQt5.xdg-desktop-portal-kde
-  ];
-
-  # environment.sessionVariables = {
-  #   XDG_SESSION_TYPE = "wayland";
-  #   XDG_CURRENT_DESKTOP = "KDE";
-  #   XDG_SESSION_DESKTOP = "KDE";
-  #   GTK_USE_PORTAL = "1";
-  #   NIXOS_XDG_OPEN_USE_PORTAL = "1";
-  # };
+  plasma.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

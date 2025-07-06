@@ -26,6 +26,7 @@
         bluez
         bluez-tools
         rclone
+        git
 
 
         # Sound
@@ -35,6 +36,7 @@
 
         # Other
         home-manager
+        sbctl
     ];
 
     fonts.packages = with pkgs; [
