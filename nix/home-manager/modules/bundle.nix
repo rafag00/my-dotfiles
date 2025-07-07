@@ -6,5 +6,6 @@
         ./fzf.nix
         ./eza.nix
         ./rclone.nix
+        ./firefox.nix
     ];
 }

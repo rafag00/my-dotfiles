@@ -36,6 +36,5 @@
                 pkgs = nixpkgs.legacyPackages.${system};
                 modules = [ ./home-manager/home.nix ];
             };
-
         };
 }

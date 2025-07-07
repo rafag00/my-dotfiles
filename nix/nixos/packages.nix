@@ -37,6 +37,12 @@
         # Other
         home-manager
         sbctl
+
+        # For sddm-astronaut
+        kdePackages.qtsvg
+        kdePackages.qtmultimedia
+        kdePackages.qtvirtualkeyboard
+        
     ];
 
     fonts.packages = with pkgs; [
