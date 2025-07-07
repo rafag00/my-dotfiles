@@ -1,11 +1,12 @@
 {
     imports = [
         ./bash.nix
-        ./ohmyposh.nix
         ./bashIntegrations.nix
-        ./fzf.nix
+        ./distrobox-notion.nix
         ./eza.nix
-        ./rclone.nix
         ./firefox.nix
+        ./fzf.nix
+        ./ohmyposh.nix
+        ./rclone.nix
     ];
 }

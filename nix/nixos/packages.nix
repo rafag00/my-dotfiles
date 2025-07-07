@@ -13,6 +13,8 @@
         vscode
         keepassxc
         github-desktop
+        docker
+        distrobox
         #need to use distrobox for notion
 
         # Work apps
@@ -20,7 +22,7 @@
         slack
         zotero
         thunderbird # home-manager config
-        libreoffic
+        libreoffice
         #Search for docker 
 
         # CLI utils

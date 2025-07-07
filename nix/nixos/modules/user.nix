@@ -7,7 +7,11 @@
 
         users.rafag00 = {
             isNormalUser = true;
-            extraGroups = [ "networkmanager" "wheel" ];
+            extraGroups = [ 
+                "docker"
+                "networkmanager" 
+                "wheel"
+            ];
             packages = with pkgs; [];
         };
 

@@ -8,12 +8,12 @@
                 flakeDir = "~/nix/";
             in {
                 rebuild = "sudo nixos-rebuild switch --flake ${flakeDir}";
-                update = "nix flake update ${flakeDir}";
+                update = "cd ${flakeDir} && nix flake update && cd ~";
                 upgrade = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
 
                 hms = "home-manager switch --flake ${flakeDir}";
 
-                ff = "fastfetch -c ~/.config/fastfetch/config.json";
+                ff = "fastfetch -c ~/nix/home-manager/extra/fastfetchConfig.json";
                 shutdown="systemctl poweroff";
 
                 gs = "git status";
