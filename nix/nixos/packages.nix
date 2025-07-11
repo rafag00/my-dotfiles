@@ -15,6 +15,7 @@
         github-desktop
         docker
         distrobox
+        gnome-text-editor
 
         # Work apps
         teams-for-linux

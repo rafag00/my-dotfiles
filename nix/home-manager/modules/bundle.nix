@@ -6,6 +6,7 @@
         ./eza.nix
         ./firefox.nix
         ./fzf.nix
+        ./kdeconnect.nix
         ./ohmyposh.nix
         ./rclone.nix
     ];
