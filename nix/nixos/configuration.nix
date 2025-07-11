@@ -43,13 +43,13 @@
   services.displayManager.sddm = {
     enable = true;
     wayland.enable = true;
+    autoNumlock = true;
     theme = "sddm-astronaut-theme";
     settings = {
         Theme = {
           ThemeDir = "/usr/share/sddm/themes/";
         };
     };
-    autoNumlock = true;
   };
 
   xdg = {

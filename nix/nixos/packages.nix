@@ -9,13 +9,12 @@
 
         # Desktop apps
         firefox
-        ghostty
+        ghostty # home-manager config
         vscode
         keepassxc
         github-desktop
         docker
         distrobox
-        #need to use distrobox for notion
 
         # Work apps
         teams-for-linux
@@ -23,7 +22,6 @@
         zotero
         thunderbird # home-manager config
         libreoffice
-        #Search for docker 
 
         # CLI utils
         bash
@@ -48,6 +46,9 @@
         # Other
         home-manager
         sbctl
+        hunspell
+        hunspellDicts.en_US
+        hunspellDicts.pt_PT
 
         # For sddm-astronaut
         kdePackages.qtsvg
@@ -57,6 +58,11 @@
     ];
 
     fonts.packages = with pkgs; [
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-emoji
+        fira
+        roboto
         nerd-fonts.jetbrains-mono
     ];
 

@@ -3,7 +3,6 @@
 {config, pkgs, ...}:
 {
   home={
-    packages = [pkgs.rclone];
     shellAliases = {
       "reload-rclone"="systemctl --user restart rCloneMounts.service";
       "status-rclone"="systemctl --user status rCloneMounts.service";
