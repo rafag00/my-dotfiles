@@ -16,6 +16,8 @@
                 ff = "fastfetch -c ~/nix/home-manager/extra/fastfetchConfig.json";
                 shutdown="systemctl poweroff";
 
+                #keep-presence = "cd ~/nix/home-manager/extra/keep-presence/ && nix-shell --run \"keep-presence -s time\" && cd ~";
+
                 gs = "git status";
                 ga = "git add";
                 gc = "git commit -m";
@@ -31,6 +33,12 @@
             eval "$(oh-my-posh init bash --config ~/nix/home-manager/extra/tokyo.omp.json)"
 
             fastfetch -c ~/nix/home-manager/extra/fastfetchConfig.json
+
+            keep-presence() {
+                cd ~/nix/home-manager/extra/keep-presence/
+                nix-shell --run "keep-presence -s \"$@\""
+                cd ~
+            }
         '';
     };
 }

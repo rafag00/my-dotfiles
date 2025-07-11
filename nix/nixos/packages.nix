@@ -38,7 +38,6 @@
         rclone
         git
 
-
         # Sound
         pipewire
         pulseaudio
