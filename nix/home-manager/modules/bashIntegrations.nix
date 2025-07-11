@@ -1,3 +1,0 @@
-{
-    programs.ghostty.enableBashIntegration = true;
-}
