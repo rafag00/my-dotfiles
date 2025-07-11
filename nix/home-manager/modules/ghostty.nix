@@ -22,7 +22,7 @@
 
             # Font and cursor settings;
             font-family = "JetBrains Mono Nerd Font";
-            font-size = 10;
+            font-size = 12;
             cursor-style = "bar";
             cursor-style-blink = true;
             #alt+click;

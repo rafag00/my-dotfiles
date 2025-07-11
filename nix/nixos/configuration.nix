@@ -1,24 +1,28 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }@args: 
+let
+  niri-flake = args.niri-flake;
+in
+{
 
   imports = [
     ./hardware-configuration.nix
     ./packages.nix
     ./modules/bundle.nix
     ./modules/plasma.nix
+    ./modules/niri.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
+  
+  nixpkgs.overlays = [
+    niri-flake.overlays.niri
+  ];
 
   nix.gc = {
     automatic = true;
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
-
-  nix.extraOptions = ''
-         extra-substituters = https://devenv.cachix.org
-         extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=
-       '';
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -70,6 +74,7 @@
   };
 
   plasma.enable = true;
+  niri.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

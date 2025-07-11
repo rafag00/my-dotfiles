@@ -16,9 +16,11 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
+        niri-flake.url = "github:sodiboo/niri-flake";
+
     };
 
-    outputs = { nixpkgs, home-manager, nix-flatpak, lanzaboote, ... }:
+    outputs = { nixpkgs, home-manager, nix-flatpak, lanzaboote, niri-flake, ... }:
         let
             system = "x86_64-linux";
         in {
@@ -27,9 +29,13 @@
                 modules = [ 
                     nix-flatpak.nixosModules.nix-flatpak
                     lanzaboote.nixosModules.lanzaboote
+                    niri-flake.nixosModules.niri
                     ./nixos/configuration.nix 
                     ./nixos/flatpak.nix
                 ];
+                specialArgs = {
+                    inherit niri-flake;
+                };
             };
 
             homeConfigurations.rafag00 = home-manager.lib.homeManagerConfiguration {
