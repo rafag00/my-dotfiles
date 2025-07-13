@@ -61,9 +61,10 @@
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-emoji
-        fira
-        roboto
+        inter
+        ibm-plex
         nerd-fonts.jetbrains-mono
+        nerd-fonts.fira-code
     ];
 
 }
