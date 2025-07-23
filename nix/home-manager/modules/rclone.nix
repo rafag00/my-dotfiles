@@ -12,7 +12,7 @@
   systemd.user.services.rCloneMounts = {
     Unit = {
       Description = "Mount all rClone configurations";
-      After = [ "network-online.target" ];
+      After = [ "network.target" ];
     };
     Service = let home = config.home.homeDirectory; in {
       Type = "forking";
