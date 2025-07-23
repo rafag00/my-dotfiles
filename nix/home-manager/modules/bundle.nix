@@ -9,5 +9,7 @@
         ./kdeconnect.nix
         ./ohmyposh.nix
         ./rclone.nix
+        ./niri.nix
+        #./stylix.nix
     ];
 }

@@ -8,35 +8,35 @@
     environment.systemPackages = with pkgs; [
 
         # Desktop apps
-        firefox
-        ghostty # home-manager config
-        vscode
-        keepassxc
-        github-desktop
-        docker
         distrobox
+        docker
+        firefox
+        ghostty
+        github-desktop
         gnome-text-editor
+        keepassxc
+        vscode
 
         # Work apps
-        teams-for-linux
-        slack
-        zotero
-        thunderbird # home-manager config
         libreoffice
+        slack
+        teams-for-linux
+        thunderbird # home-manager config
+        zotero
 
         # CLI utils
         bash
         bash-completion
-        nix-bash-completions
-        oh-my-posh
-        nano
-        fastfetch
-        eza
-        fzf
         bluez
         bluez-tools
-        rclone
+        eza
+        fastfetch
+        fzf
         git
+        nano
+        nix-bash-completions
+        oh-my-posh
+        rclone
 
         # Sound
         pipewire
@@ -58,13 +58,13 @@
     ];
 
     fonts.packages = with pkgs; [
+        ibm-plex
+        inter
+        nerd-fonts.fira-code
+        nerd-fonts.jetbrains-mono
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-emoji
-        inter
-        ibm-plex
-        nerd-fonts.jetbrains-mono
-        nerd-fonts.fira-code
     ];
 
 }

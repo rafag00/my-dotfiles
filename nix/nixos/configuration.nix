@@ -1,8 +1,4 @@
-{ config, lib, pkgs, ... }@args: 
-let
-  niri-flake = args.niri-flake;
-in
-{
+{ config, lib, pkgs, ... }: {
 
   imports = [
     ./hardware-configuration.nix
@@ -13,10 +9,6 @@ in
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  
-  nixpkgs.overlays = [
-    niri-flake.overlays.niri
-  ];
 
   nix.gc = {
     automatic = true;
@@ -68,13 +60,11 @@ in
       extraPortals = with pkgs; [
         xdg-desktop-portal
         xdg-desktop-portal-gtk
-        #xdg-desktop-portal-gnome
       ];
     };
   };
 
   plasma.enable = true;
-  niri.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
