@@ -54,7 +54,10 @@
         kdePackages.qtsvg
         kdePackages.qtmultimedia
         kdePackages.qtvirtualkeyboard
-        
+        kdePackages.kwallet
+        kdePackages.kwallet-pam
+
+        cachix
     ];
 
     fonts.packages = with pkgs; [

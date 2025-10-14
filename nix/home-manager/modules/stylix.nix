@@ -1,5 +1,5 @@
 {
-    # programs.stylix = {
-    #     enable = true;
-    # };
+  # stylix = {
+  #   enable = true;
+  # };
 }

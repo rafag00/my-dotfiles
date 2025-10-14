@@ -66,6 +66,10 @@
 
   plasma.enable = true;
 
+  environment.systemPackages = [pkgs.libsecret]; # google-chrome works with gnome-keyring through this
+  environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID"; # this is what was missing
+  security.pam.services.sddm.kwallet.enable = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 

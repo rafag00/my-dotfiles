@@ -1,9 +1,22 @@
-{ pkgs, lib, config, ... }:
-
 { 
 
+  #stylix.targets.niri.enable = true;
+
+  programs.niri.settings = {
+    binds = {
+      "Mod+T".action.spawn = "ghostty";
+      "Mod+Q".action.close-window = [];
+    };
+    
+    layout = {
+      gaps = 8;
+      focus-ring.enable = true;
+    };
+    
+    input.keyboard.xkb.layout = "eu";
+  };
+  /*
     programs.niri = {
-      enable = true;
       settings = {
 
         binds = with config.lib.niri.actions; {
@@ -166,7 +179,7 @@
       };
     };
     
-
+*/
 #   programs.niri.enable = true;
     
 #   programs.niri.settings = {

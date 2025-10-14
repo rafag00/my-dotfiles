@@ -4,7 +4,6 @@
         ./modules/bundle.nix
     ];
 
-
     home = {
         stateVersion = "25.05";
     };
