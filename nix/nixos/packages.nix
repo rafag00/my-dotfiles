@@ -1,11 +1,12 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-unstable, inputs, system, ... }: {
 
     nixpkgs.config = {
         allowUnfree = true;
-
     };
 
-    environment.systemPackages = with pkgs; [
+    environment.systemPackages = 
+    (
+        with pkgs; [
 
         # Desktop apps
         distrobox
@@ -49,6 +50,7 @@
         hunspell
         hunspellDicts.en_US
         hunspellDicts.pt_PT
+        libsecret
 
         # For sddm-astronaut
         kdePackages.qtsvg
@@ -58,7 +60,13 @@
         kdePackages.kwallet-pam
 
         cachix
-    ];
+
+    ])
+    ++
+    ( with pkgs-unstable; [
+        inputs.noctalia.packages.${system}.default
+        # ... maybe other stuff
+    ]);
 
     fonts.packages = with pkgs; [
         ibm-plex

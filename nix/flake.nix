@@ -28,6 +28,22 @@
 
         niri-flake.url = "github:sodiboo/niri-flake";
 
+        dankMaterialShell = {
+            url = "github:AvengeMedia/DankMaterialShell";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
+
+        quickshell = {
+            url = "github:outfoxxed/quickshell";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
+        };
+
+        noctalia = {
+            url = "github:noctalia-dev/noctalia-shell";
+            inputs.nixpkgs.follows = "nixpkgs-unstable";
+            inputs.quickshell.follows = "quickshell";  # Use same quickshell version
+        };
+
         stylix = {
             url = "github:danth/stylix/release-25.05";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -35,7 +51,7 @@
 
     };
 
-    outputs = { nixpkgs, nixpkgs-unstable, home-manager, nix-flatpak, lanzaboote, niri-flake, stylix, ... }:
+    outputs = inputs@{ nixpkgs, nixpkgs-unstable, home-manager, nix-flatpak, lanzaboote, niri-flake, noctalia, dankMaterialShell, stylix, ... }:
         let
             system = "x86_64-linux";
             pkgs = import nixpkgs { inherit system; };
@@ -50,34 +66,26 @@
                     
                     #stylix.nixosModules.stylix
 
-                    home-manager.nixosModules.home-manager
-
-
-                    # Add Niri module here
+                    niri-flake.nixosModules.niri
                     {
-                      imports = [ niri-flake.nixosModules.niri ];
-                      nixpkgs.overlays = [ niri-flake.overlays.niri ];
-                      niri-flake.cache.enable = true;
+                        nixpkgs.overlays = [ niri-flake.overlays.niri ];
+                        niri-flake.cache.enable = true;
                     }
 
-                   {
-                        home-manager = {
-                            useGlobalPkgs = true;
-                            useUserPackages = true;
-
-                            users.rafag00 = {
-                                imports = [
-                                    #niri-flake.homeModules.niri
-                                    ./home-manager/home.nix
-                                ];
-                            };
-                        };
+                    home-manager.nixosModules.home-manager
+                    {
+                        home-manager.extraSpecialArgs = { inherit inputs; };
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.rafag00 = import ./home-manager/home.nix;
                     }
 
                     ./nixos/configuration.nix 
                     ./nixos/flatpak.nix
 
                 ];
+
+                specialArgs = { inherit inputs pkgs-unstable system; };
             };
         };
 }

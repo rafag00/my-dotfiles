@@ -10,6 +10,7 @@
         ./ohmyposh.nix
         ./rclone.nix
         ./niri.nix
+        #./dankMaterialShell.nix
         #./stylix.nix
     ];
 }

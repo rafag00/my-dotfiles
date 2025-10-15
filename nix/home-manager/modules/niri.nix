@@ -1,21 +1,14 @@
+{config, pkgs, ...}:
+let
+  # Define a helper function to wrap noctalia commands
+  noctalia = cmd: [
+    "noctalia-shell" "ipc" "call"
+  ] ++ pkgs.lib.splitString " " cmd;
+in
 { 
 
   #stylix.targets.niri.enable = true;
-
-  programs.niri.settings = {
-    binds = {
-      "Mod+T".action.spawn = "ghostty";
-      "Mod+Q".action.close-window = [];
-    };
-    
-    layout = {
-      gaps = 8;
-      focus-ring.enable = true;
-    };
-    
-    input.keyboard.xkb.layout = "eu";
-  };
-  /*
+  
     programs.niri = {
       settings = {
 
@@ -66,10 +59,8 @@
           "Mod+Return".action = spawn "ghostty";
           "Mod+B".action = spawn "firefox";
           #"Alt+Space".action = spawn "pkill rofi || rofi -show drun -show-icons";
-          "Alt+Space" = {
-            action = spawn "sh" "-c" ''pkill rofi || rofi -show drun -show-icons'';
-            repeat = false;
-          };
+          "Alt+Space".action.spawn =  noctalia "launcher toggle";
+
           # Mouse & Trackpad Scroll Bindings
           "Mod+WheelScrollDown" = {
             action = focus-workspace-down;
@@ -167,7 +158,7 @@
 
         spawn-at-startup = [
           { command = [ "xwayland-satellite" ]; }
-          { command = [ "waybar" ]; }
+          { command = [ "noctalia-shell" ]; }
           # {
           # command = [
           #   "sh"
@@ -179,7 +170,7 @@
       };
     };
     
-*/
+
 #   programs.niri.enable = true;
     
 #   programs.niri.settings = {
