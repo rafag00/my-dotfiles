@@ -88,7 +88,7 @@
         };
         wallpaper = {
           enabled = true;
-          directory = "";
+          directory = "/home/rafag00/nix/home-manager/extra";
           enableMultiMonitorDirectories = false;
           setWallpaperOnAllMonitors = true;
           defaultWallpaper = "";
