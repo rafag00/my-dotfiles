@@ -14,6 +14,7 @@ pkgs.mkShell {
   shellHook = ''
     export VENV_DIR=$HOME/.local/share/python-envs/keep-presence
     if [ ! -d "$VENV_DIR" ]; then
+      echo "Setting up the environment..."
       python -m venv "$VENV_DIR"
       source "$VENV_DIR/bin/activate"
       pip install keep_presence
