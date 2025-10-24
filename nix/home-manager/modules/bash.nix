@@ -11,7 +11,7 @@
                 update = "cd ${flakeDir} && nix flake update && cd ~";
                 upgrade = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
 
-                hms = "home-manager switch --flake ${flakeDir}";
+                # hms = "home-manager switch --flake ${flakeDir}"; # Now deactivated as home manager is integrated
 
                 ff = "fastfetch -c ~/nix/home-manager/extra/fastfetchConfig.json";
                 shutdown="systemctl poweroff";

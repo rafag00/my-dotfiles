@@ -8,21 +8,15 @@
     (
         with pkgs; [
 
-        # Desktop apps
-        distrobox
+        # Desktop apps - move to home manager programs.enable
         docker
-        firefox
-        ghostty
         github-desktop
         gnome-text-editor
-        keepassxc
-        vscode
 
         # Work apps
         libreoffice
         slack
         teams-for-linux
-        thunderbird # home-manager config
         zotero
 
         # CLI utils

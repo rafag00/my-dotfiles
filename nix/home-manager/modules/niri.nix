@@ -9,266 +9,316 @@ in
 
   #stylix.targets.niri.enable = true;
   
-    programs.niri = {
-      settings = {
+  programs.niri = {
+    settings = {
 
-        binds = with config.lib.niri.actions; {
-          
-          "Mod+Q".action = close-window;
+      binds = with config.lib.niri.actions; {
+      
+        # Navigation
+        "Mod+Left".action = focus-column-left;
+        "Mod+Right".action = focus-column-right;
+        "Mod+Up".action = focus-window-or-workspace-up;
+        "Mod+Down".action = focus-window-or-workspace-down;
+        "Alt+Tab".action = focus-window-previous;
 
-          "Mod+F".action = toggle-window-floating;
+        # Size adjusting
+        "Mod+Shift+Left".action = set-column-width "-10%";
+        "Mod+Shift+Right".action = set-column-width "+10%";
+        "Mod+Shift+Up".action = set-window-height "-10%";
+        "Mod+Shift+Down".action = set-window-height "+10%";
 
-          # Navigation
-          "Mod+Left".action = focus-column-left;
-          "Mod+Right".action = focus-column-right;
-          "Mod+Up".action = focus-window-up;
-          "Mod+Down".action = focus-window-down;
-          "Alt+Tab".action = focus-window-previous;
+        # Workspace Navigation (Numeric)
+        "Mod+1".action = focus-workspace 1;
+        "Mod+2".action = focus-workspace 2;
+        "Mod+3".action = focus-workspace 3;
+        "Mod+4".action = focus-workspace 4;
+        "Mod+5".action = focus-workspace 5;
+        "Mod+6".action = focus-workspace 6;
+        "Mod+7".action = focus-workspace 7;
+        "Mod+8".action = focus-workspace 8;
+        "Mod+9".action = focus-workspace 9;
+        "Mod+0".action = focus-workspace 10;
 
-          # Workspace Navigation (Numeric)
-          "Mod+1".action = focus-workspace 1;
-          "Mod+2".action = focus-workspace 2;
-          "Mod+3".action = focus-workspace 3;
-          "Mod+4".action = focus-workspace 4;
-          "Mod+5".action = focus-workspace 5;
-          "Mod+6".action = focus-workspace 6;
-          "Mod+7".action = focus-workspace 7;
-          "Mod+8".action = focus-workspace 8;
-          "Mod+9".action = focus-workspace 9;
-          "Mod+0".action = focus-workspace 10;
+        # Move to Workspace (Numeric)
+        "Mod+Shift+1".action.move-column-to-workspace = 1;
+        "Mod+Shift+2".action.move-column-to-workspace = 2;
+        "Mod+Shift+3".action.move-column-to-workspace = 3;
+        "Mod+Shift+4".action.move-column-to-workspace = 4;
+        "Mod+Shift+5".action.move-column-to-workspace = 5;
+        "Mod+Shift+6".action.move-column-to-workspace = 6;
+        "Mod+Shift+7".action.move-column-to-workspace = 7;
+        "Mod+Shift+8".action.move-column-to-workspace = 8;
+        "Mod+Shift+9".action.move-column-to-workspace = 9;
+        "Mod+Shift+0".action.move-column-to-workspace = 10;
 
-          # Move to Workspace (Numeric)
-          # "Mod+Shift+1".action = move-column-to-workspace 1;
-          # "Mod+Shift+2".action = move-column-to-workspace 2;
-          # "Mod+Shift+3".action = move-column-to-workspace 3;
-          # "Mod+Shift+4".action = move-column-to-workspace 4;
-          # "Mod+Shift+5".action = move-column-to-workspace 5;
-          # "Mod+Shift+6".action = move-column-to-workspace 6;
-          # "Mod+Shift+7".action = move-column-to-workspace 7;
-          # "Mod+Shift+8".action = move-column-to-workspace 8;
-          # "Mod+Shift+9".action = move-column-to-workspace 9;
-          #"Mod+Shift+0".action = move-column-to-workspace 10;
+        # Move column
+        "Mod+Ctrl+Left".action = move-column-left;
+        "Mod+Ctrl+Right".action = move-column-right;
+        "Mod+Ctrl+Down".action = move-window-down-or-to-workspace-down;
+        "Mod+Ctrl+Up".action = move-window-up-or-to-workspace-up;
 
-          # Move column
-          "Mod+Ctrl+Left".action = move-column-left;
-          "Mod+Ctrl+Right".action = move-column-right;
-          "Mod+Ctrl+Down".action = move-column-to-workspace-down;
-          "Mod+Ctrl+Up".action = move-column-to-workspace-up;
+        # Unify or expel columns with each other
+        "Mod+BracketLeft".action = consume-or-expel-window-left;
+        "Mod+bracketRight".action = consume-or-expel-window-right;  
 
-          # App Launchers
-          "Mod+Return".action = spawn "ghostty";
-          "Mod+B".action = spawn "firefox";
-          #"Alt+Space".action = spawn "pkill rofi || rofi -show drun -show-icons";
-          "Alt+Space".action.spawn =  noctalia "launcher toggle";
+        "Mod+R".action = switch-preset-column-width;
 
-          # Mouse & Trackpad Scroll Bindings
-          "Mod+WheelScrollDown" = {
-            action = focus-workspace-down;
-            cooldown-ms = 50;
-          };
-          "Mod+WheelScrollUp" = {
-            action = focus-workspace-up;
-            cooldown-ms = 50;
-          };
-          "Mod+WheelScrollRight" = {
-            action = focus-column-right;
-            cooldown-ms = 100;
-          };
-          "Mod+WheelScrollLeft" = {
-            action = focus-column-left;
-            cooldown-ms = 100;
-          };
-
-          # Multimedia & Hardware Controls
-          "XF86AudioRaiseVolume" = {
-            action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+";
-            allow-when-locked = true;
-          };
-          "XF86AudioLowerVolume" = {
-            action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-";
-            allow-when-locked = true;
-          };
-          "XF86AudioMute" = {
-            action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
-            allow-when-locked = true;
-          };
-          "XF86AudioMicMute" = {
-            action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
-            allow-when-locked = true;
-          };
-          "XF86MonBrightnessUp" = {
-            action = spawn "brightnessctl" "set" "+5%";
-            allow-when-locked = true;
-          };
-          "XF86MonBrightnessDown" = {
-            action = spawn "brightnessctl" "set" "5%-";
-            allow-when-locked = true;
-          };
-          "XF86AudioPlay" = {
-            action = spawn "playerctl" "play-pause";
-            allow-when-locked = true;
-          };
-          "XF86AudioNext" = {
-            action = spawn "playerctl" "next";
-            allow-when-locked = true;
-          };
-          "XF86AudioPrev" = {
-            action = spawn "playerctl" "previous";
-            allow-when-locked = true;
-          };
-
-          # Overview
-          "Mod+Tab" = {
-            action = toggle-overview;
-            repeat = false;
-          };
-        };
+        "Mod+Shift+R".action = switch-preset-window-height;      
         
-        layout = {
+        "Mod+Ctrl+R".action = reset-window-height;
 
-          gaps = 8;
+        "Mod+Shift+F".action = maximize-column; 
 
-          center-focused-column = "on-overflow";
+        "Mod+Ctrl+F".action = fullscreen-window;
 
-          always-center-single-column = true;
+        "Mod+C".action = center-column;
 
-          background-color = "transparent";
-
-          preset-column-widths = [
-            { proportion = 1. / 3.; }
-            { proportion = 1. / 2.; }
-            { proportion = 2. / 3.; }
-          ];
-
-          # To decide if the border is realy necessary as focus-ring is the normal behaviour
-          focus-ring = {
-            enable = true;
-            width = 4;
-            active.color = "#7fc8ff";
-            inactive.color = "#505050";
-            urgent.color = "#9b0000";
-          };
-
-          #The border is a decoration drawn inside every window in the layout. It will take space away from windows. That is, if you have a border of 8px, then each window will be 8px smaller on each edge than if you had no border.
-          #The currently focused window, i.e. the window that can receive keyboard input, will be drawn according to layout.border.active, and all other windows will be drawn according to layout.border.inactive.
-          border = {
-            enable = true;
-            width = 4;
-            active.color = "#7fc8ff";
-            inactive.color = "#505050";
-            urgent.color = "#9b0000";
-          };
-
-          shadow = {
-            enable = true;
-            color = "#00000070";
-            draw-behind-window = false; #Default don't know if needed
-            inactive-color = "#00000070"; # Can be removed
-            offset.x = 0.000000; # Default
-            offset.y = 5.000000; # Default
-            softness = 30.000000; # Default
-            spread = 5.000000; # Default
-
-          };
-
-          # Don't know what this does
-          tab-indicator = {
-            enable = true;
-            corner-radius = 0.000000; # Default
-            gap = 5.000000; # Default
-            gaps-between-tabs = 0.000000; # Default
-            hide-when-single-tab = false; # Default
-            length.total-proportion = 0.500000; # Default
-            place-within-column = false; # Default
-            position = "top";
-            width = 4.000000; # Default
-            # active, inactive and urgent colors
-          };
-
-        };
-
-        prefer-no-csd = true;
-
-        screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+        # Center all fully visible columns on screen.
+        "Mod+Ctrl+C".action = center-visible-columns;
         
-        input = { 
-          keyboard.xkb.layout = "eu, pt";
-          keyboard.numlock = true;
-          keyboard.xkb.options = "grp:alt_caps_toggle";
+        "Mod+W".action = toggle-column-tabbed-display;
 
-          touchpad = {
-            dwt = true;
-            dwtp = true;
-            tap = true;
-            middle-emulation = true;
-            drag = true;
-          };
-
-          mouse = {
-            middle-emulation = true;
-          };
-
-          focus-follows-mouse.enable = true;
-
-          workspace-auto-back-and-forth = true;
+        # Colum operations
+        "Mod+Q" = {
+          action = close-window;
+          repeat = false;
+        };
+        "Mod+F".action = toggle-window-floating;
+        "Mod+Tab" = {
+          action = toggle-overview;
+          repeat = false;
         };
 
-        cursor = {
-          theme = "breeze"; # Maybe change maybe not
-          size = 24;
-          hide-after-inactive-ms = 20000;
-          hide-when-typing = false;
+        # App Launchers
+        "Mod+Return".action = spawn "ghostty";
+        "Mod+B".action = spawn "firefox";
+        "Mod+E".action = spawn "dolphin";
 
+        "Alt+Space".action.spawn =  noctalia "launcher toggle";
+        "XF86Search".action.spawn = noctalia "launcher toggle";
+        "Mod+Period".action = spawn "Emoji Selector";
+
+        #"XF86Calculator".action = spawn ""; to be added
+
+        # Screen capture
+        "Print".action.screenshot-window = [];
+        "Mod+Shift+S".action.screenshot = [];
+
+        # Mouse & Trackpad Scroll Bindings
+        "Mod+WheelScrollDown" = {
+          action = focus-workspace-down;
+          cooldown-ms = 50;
+        };
+        "Mod+WheelScrollUp" = {
+          action = focus-workspace-up;
+          cooldown-ms = 50;
+        };
+        "Mod+Shift+WheelScrollDown" = {
+          action = focus-column-right;
+          cooldown-ms = 50;
+        };
+        "Mod+Shift+WheelScrollUp" = {
+          action = focus-column-left;
+          cooldown-ms = 50;
+        };
+        "Mod+WheelScrollRight" = {
+          action = focus-column-right;
+          cooldown-ms = 100;
+        };
+        "Mod+WheelScrollLeft" = {
+          action = focus-column-left;
+          cooldown-ms = 100;
         };
 
-        environment = {
-          DISPLAY = ":0";
-          ELECTRON_OZONE_PLATFORM_HINT = "auto";
-          NIXOS_OZONE_WL = "1";
-          CLUTTER_BACKEND = "wayland";
-          GDK_BACKEND = "wayland";
-          QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-          QT_QPA_PLATFORM = "wayland";
-          QT_QPA_PLATFORMTHEME = "qtct";
-          #QT_STYLE_OVERRIDE = "kvantum";
-          QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+        # Multimedia & Hardware Controls - need to change to noctalia
+        "XF86AudioRaiseVolume" = {
+          action.spawn = noctalia "volume increase";
+          allow-when-locked = true;
         };
-
-        workspaces."1" = {
-          name = "1";
-          # open-on-output is an option but needs multi-screen testing
-          };
-        workspaces."2" = { name = "2"; };
-        workspaces."3" = { name = "3"; };
-        workspaces."Chats" = { name = "Chats"; };
-        workspaces."Misc" = { name = "Misc"; };
-
-        window-rules = [
-          {
-            matches = [
-              {
-                app-id = "^KeePassXC$";
-              }
-            ];
-            open-on-workspace = "Misc";  
-            
-          }
-        ];
-
-        spawn-at-startup = [
-          { command = [ "xwayland-satellite" ]; }
-          { command = [ "noctalia-shell" ]; }
-          
-          # {
-          # command = [
-          #   "sh"
-          #   "-c"
-          #   "~/.local/bin/fuzzel-polkit.sh"
-          # ];
-          # }
-        ];
+        "XF86AudioLowerVolume" = {
+          action.spawn = noctalia "volume decrease";
+          allow-when-locked = true;
+        };
+        "XF86AudioMute" = {
+          action.spawn = noctalia "volume muteOutput";
+          allow-when-locked = true;
+        };
+        "XF86AudioMicMute" = {
+          action.spawn = noctalia "volume muteInput";
+          allow-when-locked = true;
+        };
+        "XF86MonBrightnessUp" = {
+          action = spawn "brightnessctl" "set" "+5%";
+          allow-when-locked = true;
+        };
+        "XF86MonBrightnessDown" = {
+          action = spawn "brightnessctl" "set" "5%-";
+          allow-when-locked = true;
+        };
+        "XF86AudioPlay" = {
+          action.spawn = noctalia "media playPause";
+          allow-when-locked = true;
+        };
+        "XF86AudioNext" = {
+          action.spawn = noctalia "media next";
+          allow-when-locked = true;
+        };
+        "XF86AudioPrev" = {
+          action.spawn = noctalia "media previous";
+          allow-when-locked = true;
+        };
+        "Mod+Shift+B".action.spawn = noctalia "batteryManager cycle";
+        #"Mod".action.spwan = noctalia "controlCenter toggle"; # At the moment niri doesn't support release key
+        
+        # Misc
+        "Mod+L".action.spawn = noctalia "lockScreen lock";
+        "Mod+Shift+P".action.spawn = noctalia "darkMode toggle";
+        "Ctrl+Alt+Delete".action = quit;
       };
+      
+      layout = {
+
+        gaps = 8;
+
+        center-focused-column = "on-overflow";
+
+        background-color = "transparent";
+
+        preset-column-widths = [
+          { proportion = 1. / 3.; }
+          { proportion = 1. / 2.; }
+          { proportion = 2. / 3.; }
+        ];
+
+        # To decide if the border is realy necessary as focus-ring is the normal behaviour
+        focus-ring = {
+          enable = true;
+          width = 4;
+          active.color = "#7fc8ff";
+          inactive.color = "#505050";
+          urgent.color = "#9b0000";
+        };
+
+        #The border is a decoration drawn inside every window in the layout. It will take space away from windows. That is, if you have a border of 8px, then each window will be 8px smaller on each edge than if you had no border.
+        #The currently focused window, i.e. the window that can receive keyboard input, will be drawn according to layout.border.active, and all other windows will be drawn according to layout.border.inactive.
+        border = {
+          enable = true;
+          width = 4;
+          active.color = "#7fc8ff";
+          inactive.color = "#505050";
+          urgent.color = "#9b0000";
+        };
+
+        shadow = {
+          enable = true;
+          color = "#00000070";
+          draw-behind-window = false; #Default don't know if needed
+          inactive-color = "#00000070"; # Can be removed
+          offset.x = 0.000000; # Default
+          offset.y = 5.000000; # Default
+          softness = 30.000000; # Default
+          spread = 5.000000; # Default
+
+        };
+
+        # Don't know what this does
+        tab-indicator = {
+          enable = true;
+          corner-radius = 0.000000; # Default
+          gap = 5.000000; # Default
+          gaps-between-tabs = 0.000000; # Default
+          hide-when-single-tab = false; # Default
+          length.total-proportion = 0.500000; # Default
+          place-within-column = false; # Default
+          position = "top";
+          width = 4.000000; # Default
+          # active, inactive and urgent colors
+        };
+
+      };
+
+      prefer-no-csd = true;
+
+      screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+      
+      input = { 
+        keyboard.xkb.layout = "eu, pt";
+        keyboard.numlock = true;
+        keyboard.xkb.options = "grp:alt_caps_toggle";
+
+        touchpad = {
+          dwt = true;
+          dwtp = true;
+          tap = true;
+          middle-emulation = true;
+          drag = true;
+        };
+
+        mouse = {
+          middle-emulation = true;
+        };
+
+        focus-follows-mouse.enable = true;
+
+        workspace-auto-back-and-forth = true;
+      };
+
+      cursor = {
+        theme = "breeze"; # Maybe change maybe not
+        size = 24;
+        hide-after-inactive-ms = 20000;
+        hide-when-typing = false;
+
+      };
+
+      environment = {
+        DISPLAY = ":0";
+        ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        NIXOS_OZONE_WL = "1";
+        CLUTTER_BACKEND = "wayland";
+        GDK_BACKEND = "wayland";
+        QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+        QT_QPA_PLATFORM = "wayland";
+        #QT_QPA_PLATFORMTHEME = "qtct";
+        #QT_STYLE_OVERRIDE = "kvantum";
+        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      };
+
+      workspaces."1" = {
+        name = "1";
+        # open-on-output is an option but needs multi-screen testing
+        };
+      workspaces."2" = { name = "2"; };
+      workspaces."3" = { name = "3"; };
+      workspaces."Chats" = { name = "Chats"; };
+      workspaces."Misc" = { name = "Misc"; };
+
+      window-rules = [
+        {
+          matches = [
+            {
+              app-id = "^KeePassXC$";
+            }
+          ];
+          open-on-workspace = "Misc";  
+          
+        }
+      ];
+
+      spawn-at-startup = [
+        { command = [ "xwayland-satellite" ]; }
+        { command = [ "noctalia-shell" ]; }
+        
+        # {
+        # command = [
+        #   "sh"
+        #   "-c"
+        #   "~/.local/bin/fuzzel-polkit.sh"
+        # ];
+        # }
+      ];
     };
+  };
     
 
 #   programs.niri.enable = true;

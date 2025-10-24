@@ -10,6 +10,12 @@
         ./ohmyposh.nix
         ./rclone.nix
         ./niri.nix
+        ./zoxide.nix
+        ./keepassxc.nix
+        ./vscode.nix
+        ./lazydocker.nix
+        ./lazygit.nix
+        #./thunderbird.nix
         #./dankMaterialShell.nix
         #./stylix.nix
     ];
