@@ -1,0 +1,22 @@
+{
+    imports = [
+        ./bash.nix
+        ./distrobox-notion.nix
+        ./eza.nix
+        ./firefox.nix
+        ./fzf.nix
+        ./ghostty.nix
+        ./kdeconnect.nix
+        ./ohmyposh.nix
+        ./rclone.nix
+        ./niri.nix
+        ./zoxide.nix
+        ./keepassxc.nix
+        ./vscode.nix
+        ./lazydocker.nix
+        ./lazygit.nix
+        #./thunderbird.nix
+        #./dankMaterialShell.nix
+        #./stylix.nix
+    ];
+}

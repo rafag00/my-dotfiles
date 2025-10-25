@@ -1,13 +1,5 @@
 {
     description = "System configuration";
-    nixConfig = {
-        extra-substituters = [
-            "https://niri.cachix.org"
-        ];
-        extra-trusted-public-keys = [
-        "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
-      ];
-    };
 
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -50,42 +42,28 @@
         };
 
     };
-
-    outputs = inputs@{ nixpkgs, nixpkgs-unstable, home-manager, nix-flatpak, lanzaboote, niri-flake, noctalia, dankMaterialShell, stylix, ... }:
+    
+    outputs = { nixpkgs, nixpkgs-unstable, ... } @ inputs:
         let
             system = "x86_64-linux";
             pkgs = import nixpkgs { inherit system; };
             pkgs-unstable = import nixpkgs-unstable { inherit system; };
-        in {
-            nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+            
+            mkHost = {hostname, username}: nixpkgs.lib.nixosSystem {
                 inherit system;
+                specialArgs = {
+                    inherit inputs;
+                    host = hostname;
+                    inherit username;
+                    inherit pkgs-unstable;
+                    inherit system;
+                };
+                modules = [./hosts/${hostname}];
+            };
 
-                modules = [ 
-                    nix-flatpak.nixosModules.nix-flatpak
-                    lanzaboote.nixosModules.lanzaboote
-                    
-                    #stylix.nixosModules.stylix
-
-                    niri-flake.nixosModules.niri
-                    {
-                        nixpkgs.overlays = [ niri-flake.overlays.niri ];
-                        niri-flake.cache.enable = true;
-                    }
-
-                    home-manager.nixosModules.home-manager
-                    {
-                        home-manager.extraSpecialArgs = { inherit inputs; };
-                        home-manager.useGlobalPkgs = true;
-                        home-manager.useUserPackages = true;
-                        home-manager.users.rafag00 = import ./home-manager/home.nix;
-                    }
-
-                    ./nixos/configuration.nix 
-                    ./nixos/flatpak.nix
-
-                ];
-
-                specialArgs = { inherit inputs pkgs-unstable system; };
+        in {
+            nixosConfigurations = {
+                nixos = mkHost { hostname = "nixos"; username = "rafag00";};
             };
         };
 }
