@@ -24,8 +24,8 @@
         ripgrep # Improved Grep
         unrar # Tool For Handling .rar Files
         unzip # Tool For Handling .zip Files
+        zip
         usbutils # Good Tools For USB Devices
-
 
         # Sound
         pipewire
@@ -48,11 +48,11 @@
         cachix
 
     ])
-    ++
-    ( with pkgs-unstable; [
-        inputs.noctalia.packages.${system}.default
-        # ... maybe other stuff
-    ]);
+     ++
+     ( with pkgs-unstable; [
+         inputs.noctalia.packages.${system}.default
+
+     ]);
 
     fonts.packages = with pkgs; [
         ibm-plex

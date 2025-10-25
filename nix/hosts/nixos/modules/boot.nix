@@ -26,42 +26,31 @@ in
 
 
         # Possible themes:
-        #   - Abstract Rings alt
-        #   - Blockchain
-        #   - Cross HUD
-        #   - Owl
-        # For the logo:
-        # 
-        # cat >> /etc/plymouth/themes/cross_hud/cross_hud.script <<'EOF'
-
-        # logo_image = Image("../../logo.png");
-        # logo_sprite = Sprite();
-        # logo_sprite.SetImage(logo_image);
-        # logo_sprite.SetX(Window.GetX() + (Window.GetWidth() / 2 - logo_image.GetWidth() / 2));
-        # logo_sprite.SetY(Window.GetHeight() - logo_image.GetHeight() - 50);
-        # EOF
-        #
+        #   - abstract_rings_alt
+        #   - blockchain
+        #   - cross_hud
+        #   - owl
         plymouth = {
             enable = true;
-            theme = "cross_hud";
-            themePackages = with pkgs; [
-                (
-                    # By default we would install all themes
-                    (adi1090x-plymouth-themes.override {
-                        selected_themes = [ "cross_hud" ];
-                    })
-                    .overrideAttrs (oldAttrs: {
-                        # This postPatch hook runs after unpacking the source
-                        postPatch = (oldAttrs.postPatch or "") + ''
+            #theme = "spinner";
+            # themePackages = with pkgs; [
+            #     (
+            #         # By default we would install all themes
+            #         (adi1090x-plymouth-themes.override {
+            #             selected_themes = [ "cross_hud" ];
+            #         })
+            #         .overrideAttrs (oldAttrs: {
+            #             # This postPatch hook runs after unpacking the source
+            #             postPatch = (oldAttrs.postPatch or "") + ''
 
-                        cp ${nixLogo} ./cross_hud/logo.png
+            #             cp ${nixLogo} ./cross_hud/logo.png
 
-                        echo -e "logo_image = Image("logo.png");\nlogo_sprite = Sprite();\nlogo_sprite.SetImage(logo_image);\nlogo_sprite.SetX(Window.GetX() + (Window.GetWidth() / 2 - logo_image.GetWidth() / 2));\nlogo_sprite.SetY(Window.GetHeight() - logo_image.GetHeight() - 50);\n" >> ./cross_hud/cross_hud.script
-                        '';
+            #             echo -e "logo_image = Image("logo.png");\nlogo_sprite = Sprite();\nlogo_sprite.SetImage(logo_image);\nlogo_sprite.SetX(Window.GetX() + (Window.GetWidth() / 2 - logo_image.GetWidth() / 2));\nlogo_sprite.SetY(Window.GetHeight() - logo_image.GetHeight() - 50);\n" >> ./cross_hud/cross_hud.script
+            #             '';
 
-                    })
-                )
-            ];
+            #         })
+            #     )
+            # ];
         };
 
         # Enable "Silent boot"

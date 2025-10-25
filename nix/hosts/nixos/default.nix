@@ -14,6 +14,10 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal
         xdg-desktop-portal-gtk
+        xdg-utils
+        kdePackages.xdg-desktop-portal-kde
+        libsForQt5.xdg-desktop-portal-kde
+        xdg-desktop-portal-gnome
       ];
     };
   };
