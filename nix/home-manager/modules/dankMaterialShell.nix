@@ -1,3 +1,0 @@
-{
-    programs.dankMaterialShell.enable = true;
-}

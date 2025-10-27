@@ -28,6 +28,7 @@ in
         nautilus # need to open some dialog windows
         gnome-keyring
         kdePackages.polkit-kde-agent-1
+        kdePackages.qt6ct
     ];
 
     xdg.configFile."niri/config.kdl".text = finalConfig;
