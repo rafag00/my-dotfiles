@@ -18,13 +18,6 @@
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
-        # niri-flake.url = "github:sodiboo/niri-flake";
-
-        dankMaterialShell = {
-            url = "github:AvengeMedia/DankMaterialShell";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         quickshell = {
             url = "github:outfoxxed/quickshell";
             inputs.nixpkgs.follows = "nixpkgs-unstable";

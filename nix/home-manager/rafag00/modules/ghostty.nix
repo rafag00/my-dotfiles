@@ -5,10 +5,10 @@
         enableBashIntegration = true;
         
         settings = {
-            theme = "my-theme";
+            #theme = "my-theme";
             window-decoration = true;
             window-inherit-working-directory = true;
-            window-theme = "dark";
+            #window-theme = "dark";
             window-save-state = "always";
             shell-integration = "bash";
 
@@ -44,27 +44,27 @@
             ];
         };
 
-        themes = {
-            my-theme = {
-                background = "#2e3440";
-                foreground = "#d8dee9";
-                background-opacity = 0.75;
-                background-blur = true;
+        # themes = {
+        #     my-theme = {
+        #         background = "#2e3440";
+        #         foreground = "#d8dee9";
+        #         background-opacity = 0.75;
+        #         background-blur = true;
 
-                #selection-foreground = #ffffff
-                #selection-background = #44475a
-                #cursor-color = #f8f8f2
-                palette = [
-                    "0=#3b4252"
-                    "1=#bf616a"
-                    "2=#a3be8c"
-                    "3=#ebcb8b"
-                    "4=#81a1c1"
-                    "5=#b48ead"
-                    "6=#88c0d0"
-                    "7=#d8dee9"
-                ];
-            };
-        };
+        #         #selection-foreground = #ffffff
+        #         #selection-background = #44475a
+        #         #cursor-color = #f8f8f2
+        #         palette = [
+        #             "0=#3b4252"
+        #             "1=#bf616a"
+        #             "2=#a3be8c"
+        #             "3=#ebcb8b"
+        #             "4=#81a1c1"
+        #             "5=#b48ead"
+        #             "6=#88c0d0"
+        #             "7=#d8dee9"
+        #         ];
+        #     };
+        # };
     };
 }

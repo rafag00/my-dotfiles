@@ -1,8 +1,9 @@
-{ inputs, pkgs, ...}:
+{ inputs, pkgs, system, ...}:
 {
   imports = [
-    #inputs.dankMaterialShell.homeModules.dankMaterialShell.default
-    #inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
+    #inputs.quickshell-git.packages.${system}.default
+    #inputs.dms.homeModules.dankMaterialShell.default
+    #inputs.dms.homeModules.dankMaterialShell.niri
     inputs.noctalia.homeModules.default
     ./modules
   ];

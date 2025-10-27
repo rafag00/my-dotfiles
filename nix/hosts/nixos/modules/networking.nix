@@ -1,4 +1,4 @@
-{host, ...}:{
+{pkgs, host, ...}:{
 
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
     # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -11,8 +11,13 @@
 
         hostName = "${host}";
 
-        networkmanager.enable = true;
-        networkmanager.dns = "none";
+        networkmanager = {
+            enable = true;
+            dns = "none";
+            plugins = with pkgs; [
+                networkmanager-openvpn
+            ];
+        };
         
         useDHCP = false;
         dhcpcd.enable = false;

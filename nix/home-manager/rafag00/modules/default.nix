@@ -9,9 +9,8 @@
         ./kdeconnect.nix
         ./ohmyposh.nix
         ./rclone.nix
-        ./niri.nix
+        ./niri
         ./zoxide.nix
-        ./keepassxc.nix
         ./vscode.nix
         ./lazydocker.nix
         ./lazygit.nix

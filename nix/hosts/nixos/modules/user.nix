@@ -22,10 +22,18 @@
                 "wheel"
             ];
             packages = with pkgs; [
-                # Desktop apps not in home-manager
+                # Desktop apps
                 docker
                 github-desktop
                 gnome-text-editor
+                qalculate-qt
+                #networkmanagerapplet
+                keepassxc
+                kdePackages.okular
+                kdePackages.ark
+                kdePackages.gwenview
+                kdePackages.dolphin
+                kdePackages.plasma-workspace
 
                 # Work apps
                 libreoffice
