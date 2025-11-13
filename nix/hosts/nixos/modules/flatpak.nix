@@ -11,7 +11,7 @@
 
         packages = [
             "com.spotify.Client"
-            #"io.github.shiftey.Desktop"
+            "dev.vencord.Vesktop"
         ];
 
     };

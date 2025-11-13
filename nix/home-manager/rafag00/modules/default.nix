@@ -11,11 +11,6 @@
         ./rclone.nix
         ./niri
         ./zoxide.nix
-        ./vscode.nix
-        ./lazydocker.nix
-        ./lazygit.nix
-        #./thunderbird.nix
         #./dankMaterialShell.nix
-        #./stylix.nix
     ];
 }

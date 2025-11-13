@@ -28,7 +28,7 @@ fi
 ## Variables
 sys_devices_platform_basepath="/sys/devices/platform"
 platform="/i8042"
-input_keyboard="/serio0/input/input2"
+input_keyboard="/serio0/input/input0"
 keyboard_fullpath="$sys_devices_platform_basepath$platform$input_keyboard/inhibited"
 # decide if enable or disable
 if [[ "$1" == "disable" ]]; then

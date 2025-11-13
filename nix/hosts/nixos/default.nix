@@ -14,10 +14,10 @@
       extraPortals = with pkgs; [
         xdg-desktop-portal
         xdg-desktop-portal-gtk
+        xdg-desktop-portal-gnome
         xdg-utils
         kdePackages.xdg-desktop-portal-kde
         libsForQt5.xdg-desktop-portal-kde
-        xdg-desktop-portal-gnome
       ];
     };
   };
@@ -29,7 +29,7 @@
   environment.variables.XDG_RUNTIME_DIR = "/run/user/$UID"; # this is what was missing (in what idk)
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   system.stateVersion = "25.05";
 

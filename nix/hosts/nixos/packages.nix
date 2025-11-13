@@ -31,12 +31,14 @@
         pipewire
 
         # Other
+        appimage-run # run appimages
         home-manager
         sbctl
         hunspell
         hunspellDicts.en_US
         hunspellDicts.pt_PT
         libsecret
+        gpu-screen-recorder
 
         # For sddm-astronaut
         kdePackages.qtsvg
@@ -56,7 +58,7 @@
 
     fonts.packages = with pkgs; [
         ibm-plex
-        inter
+        inter-nerdfont
         nerd-fonts.fira-code
         nerd-fonts.jetbrains-mono
         noto-fonts

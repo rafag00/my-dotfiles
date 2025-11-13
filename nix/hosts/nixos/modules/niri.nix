@@ -15,19 +15,17 @@
       fstrim.enable = true; # SSD Optimizer
       gvfs.enable = true; # For Mounting USB & More
       blueman.enable = true; # Bluetooth Support
-      tumbler.enable = true; # Image/video preview
+      power-profiles-daemon.enable = true;
       gnome.gnome-keyring.enable = true;
       upower.enable = true; # Power management (required for DMS battery monitoring)
-      
-      pipewire = {
-        enable = true;
-        alsa.enable = true;
-        alsa.support32Bit = true;
-        pulse.enable = true;
-        wireplumber.enable = true;  # Enable WirePlumber session manager
-      };
-
     };
+
+    xdg.portal.config.niri = {
+         default = ["gnome" "gtk"];
+        "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+        "org.freedesktop.impl.portal.Screenshot" = "gnome";
+        "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
+     };
     
     security.pam.services.sddm.enableGnomeKeyring = true;
 

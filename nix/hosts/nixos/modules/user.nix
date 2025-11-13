@@ -27,28 +27,43 @@
                 github-desktop
                 gnome-text-editor
                 qalculate-qt
-                #networkmanagerapplet
                 keepassxc
                 kdePackages.okular
                 kdePackages.ark
                 kdePackages.gwenview
+
+                # Dolphin dependencies
                 kdePackages.dolphin
+                kdePackages.dolphin-plugins
+                kdePackages.baloo-widgets
+                kdePackages.baloo
+                kdePackages.kimageformats
+                kdePackages.kdegraphics-thumbnailers
+                kdePackages.ffmpegthumbs 
+                kdePackages.qtimageformats 
                 kdePackages.plasma-workspace
+
+                # Coding apps
+                vscode
+                lazygit
+                lazydocker
 
                 # Work apps
                 libreoffice
                 slack
                 teams-for-linux
+                thunderbird
                 zotero
                 zoom-us
 
                 #other
-                appimage-run # run appimages
                 cmatrix # Matrix Movie Effect In Terminal
                 cowsay # Great Fun Terminal Program
                 killall # For Killing All Instances Of Programs
-                quick-webapps
-                localsend
+                quick-webapps # Create Webapps From Any Website
+                localsend # Easy File Transfer Over LAN
+                pywalfox-native # Firefox Theme Changer Based On Pywal
+                uv # python projects
             ];
         };
 

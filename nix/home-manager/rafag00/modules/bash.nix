@@ -15,6 +15,8 @@
 
                 ff = "fastfetch -c ~/nix/home-manager/rafag00/extra/fastfetchConfig.json";
                 shutdown="systemctl poweroff";
+                keyboard-on="sudo sh ~/nix/home-manager/rafag00/extra/integrated-keyboard.sh enable";
+                keyboard-off="sudo sh ~/nix/home-manager/rafag00/extra/integrated-keyboard.sh disable";
 
                 #keep-presence = "cd ~/nix/home-manager/extra/keep-presence/ && nix-shell --run \"keep-presence -s time\" && cd ~";
 

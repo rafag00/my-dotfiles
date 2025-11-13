@@ -5,7 +5,7 @@
         enableBashIntegration = true;
         
         settings = {
-            #theme = "my-theme";
+            theme = "noctalia";
             window-decoration = true;
             window-inherit-working-directory = true;
             #window-theme = "dark";
@@ -22,7 +22,7 @@
 
             # Font and cursor settings;
             font-family = "JetBrains Mono Nerd Font";
-            font-size = 12;
+            font-size = 10;
             cursor-style = "bar";
             cursor-style-blink = true;
             #alt+click;
