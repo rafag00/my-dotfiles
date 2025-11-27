@@ -92,6 +92,12 @@
           "style": "diamond",
           "template": "[<#ffffff> </> <#ffff00>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}</>] ",
           "type": "python"
+        },
+        {
+          "foreground": "#7eb8da",
+          "style": "diamond",
+          "template": "{{ if ne .Type \"unknown\" }}[<#ffffff>\ue843 </> <#ffff00>nix-{{ .Type }}</>]{{ end }}",
+          "type": "nix-shell"
         }
       ],
       "type": "prompt"

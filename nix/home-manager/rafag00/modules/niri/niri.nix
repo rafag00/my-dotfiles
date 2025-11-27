@@ -23,14 +23,18 @@ in
 {
     home.packages = with pkgs; [
         xwayland-satellite
-        udiskie
         nautilus # need to open some dialog windows
         networkmanagerapplet
         wl-clipboard
+        cliphist
         gnome-keyring
         kdePackages.polkit-kde-agent-1
         xdg-desktop-portal-gnome
-        kdePackages.qt6ct
+        kdePackages.knewstuff
+        kdePackages.ksvg
+        kdePackages.qtpositioning
+        #kdePackages.qt6ct
+        brightnessctl
         # kdePackages.qtstyleplugin-kvantum
         # libsForQt5.qt5ct
     ];

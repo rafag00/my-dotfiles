@@ -1,7 +1,7 @@
 {
     imports = [
         ./bash.nix
-        ./distrobox-notion.nix
+        #./distrobox-notion.nix
         ./eza.nix
         ./firefox.nix
         ./fzf.nix

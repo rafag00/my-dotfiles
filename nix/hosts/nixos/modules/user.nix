@@ -27,6 +27,7 @@
                 github-desktop
                 gnome-text-editor
                 qalculate-qt
+                haruna
                 keepassxc
                 kdePackages.okular
                 kdePackages.ark
@@ -64,6 +65,7 @@
                 localsend # Easy File Transfer Over LAN
                 pywalfox-native # Firefox Theme Changer Based On Pywal
                 uv # python projects
+                distrobox # containerized dev environments
             ];
         };
 

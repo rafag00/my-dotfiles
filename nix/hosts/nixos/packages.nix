@@ -52,8 +52,8 @@
     ])
      ++
      ( with pkgs-unstable; [
-         inputs.noctalia.packages.${system}.default
-
+        inputs.noctalia.packages.${system}.default
+        nh
      ]);
 
     fonts.packages = with pkgs; [

@@ -4,10 +4,7 @@
 
     services.flatpak = {
         enable = true;
-        update.auto = {
-            enable = true;
-            onCalendar = "weekly";
-        };
+        update.onActivation = true;
 
         packages = [
             "com.spotify.Client"

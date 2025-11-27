@@ -59,7 +59,7 @@
         };
         general = {
           avatarImage = "";
-          dimDesktop = true;
+          #dimDesktop = true;
           showScreenCorners = false;
           forceBlackScreenCorners = false;
           scaleRatio = 1;

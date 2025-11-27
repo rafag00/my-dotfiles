@@ -7,9 +7,13 @@
             let
                 flakeDir = "~/nix/";
             in {
-                rebuild = "sudo nixos-rebuild switch --flake ${flakeDir}";
+                #rebuild = "sudo nixos-rebuild switch --flake ${flakeDir}";
+                #update = "cd ${flakeDir} && nix flake update && cd ~";
+                #upgrade = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
+
+                rebuild = "nh os switch ${flakeDir}";
                 update = "cd ${flakeDir} && nix flake update && cd ~";
-                upgrade = "sudo nixos-rebuild switch --upgrade --flake ${flakeDir}";
+                upgrade = "nh os switch -u ${flakeDir}";
 
                 # hms = "home-manager switch --flake ${flakeDir}"; # Now deactivated as home manager is integrated
 

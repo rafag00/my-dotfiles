@@ -8,7 +8,7 @@ output "HDMI-A-1" {
 
 output "eDP-1" {
     mode "1920x1080@60.030"
-    scale 1
+    scale 1.25
     transform "normal"
     position x=0 y=0
     focus-at-startup
@@ -16,17 +16,18 @@ output "eDP-1" {
 
 environment {
     DISPLAY ":0"
-    ELECTRON_OZONE_PLATFORM_HINT "auto"
-    GTK_USE_PORTAL "1"
+    XWAYLAND_ENABLE "1"
     NIXOS_OZONE_WL "1"
+    GTK_USE_PORTAL "1"
     GDK_SCALE "1"
     GDK_BACKEND "wayland"
     QT_AUTO_SCREEN_SCALE_FACTOR "1"
     QT_QPA_PLATFORM "wayland"
-    QT_QPA_PLATFORMTHEME "qt6ct"
+    QT_QPA_PLATFORMTHEME "kde"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     MOZ_ENABLE_WAYLAND "1"
-    XWAYLAND_ENABLE "1"
+    XDG_MENU_PREFIX "plasma-"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
 hotkey-overlay {
@@ -105,13 +106,16 @@ binds {
     // Colum operations
     Mod+Q repeat=false { close-window; }
 
-    Mod+F { toggle-window-floating; }
+    Mod+T { toggle-window-floating; }
 
-    Mod+Shift+F { switch-focus-between-floating-and-tiling;}
+    Mod+F { set-column-width "100%"; }
+
+    Mod+Shift+F { switch-focus-between-floating-and-tiling; }
 
     Mod+Tab repeat=false { toggle-overview; }
                 
     // App Launchers
+    Mod+Shift+Return { spawn "konsole"; }
     Mod+Return { spawn "ghostty"; }
     Mod+B { spawn "firefox"; }
     Mod+E { spawn "dolphin"; }
@@ -135,8 +139,10 @@ binds {
     Mod+WheelScrollLeft cooldown-ms=50 { focus-column-left; }
 
     // Multimedia & Hardware Controls
-    XF86AudioRaiseVolume allow-when-locked=true { spawn @shellCommand@ "volume" "increase"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn @shellCommand@ "volume" "decrease"; }
+    //XF86AudioRaiseVolume allow-when-locked=true { spawn @shellCommand@ "volume" "increase"; }
+    //XF86AudioLowerVolume allow-when-locked=true { spawn @shellCommand@ "volume" "decrease"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
     XF86AudioMute allow-when-locked=true { spawn @shellCommand@ "volume" "muteOutput"; }
     XF86AudioMicMute allow-when-locked=true { spawn @shellCommand@ "volume" "muteInput"; }
     XF86MonBrightnessUp allow-when-locked=true { spawn @shellCommand@ "brightness" "increase"; }
@@ -156,7 +162,7 @@ binds {
 }
 
 layout {
-    gaps 9
+    gaps 8
 
     center-focused-column "never"
     always-center-single-column
@@ -177,7 +183,7 @@ layout {
         proportion 1.0
     }
 
-    default-column-width { proportion 0.5; }
+    //default-column-width { proportion 0.5; }
 
     // To decide if the border is realy necessary as focus-ring is the normal behaviour
     focus-ring {
@@ -191,11 +197,11 @@ layout {
     // The border is a decoration drawn inside every window in the layout. It will take space away from windows. That is, if you have a border of 8px, then each window will be 8px smaller on each edge than if you had no border.
     // The currently focused window, i.e. the window that can receive keyboard input, will be drawn according to layout.border.active, and all other windows will be drawn according to layout.border.inactive.
     border {
-        // off
-        width 4
-        active-color "#7fc8ff"
-        inactive-color "#505050"
-        urgent-color "#9b0000"
+        off
+        //width 4
+        //active-color "#7fc8ff"
+        //inactive-color "#505050"
+        //urgent-color "#9b0000"
     }
 
     shadow {
@@ -208,7 +214,7 @@ layout {
         spread 5.000000 // Default
     }
 
-    // Don't know what this does
+    // Not using at the moment but cool feature
     tab-indicator {
         // off
         corner-radius 0.000000 // Default
@@ -263,38 +269,38 @@ cursor {
     hide-after-inactive-ms 20000
 }
 
-//animations {
-//    workspace-switch {
-//        spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
-//    }
-//    window-open {
-//        duration-ms 150
-//        curve "ease-out-expo"
-//    }
-//    window-close {
-//        duration-ms 150
-//        curve "ease-out-quad"
-//    }
-//    horizontal-view-movement {
-//        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
-//    }
-//    window-movement {
-//        spring damping-ratio=0.75 stiffness=323 epsilon=0.0001
-//    }
-//    window-resize {
-//        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
-//    }
-//    config-notification-open-close {
-//        spring damping-ratio=0.65 stiffness=923 epsilon=0.001
-//    }
-//    screenshot-ui-open {
-//        duration-ms 200
-//        curve "ease-out-quad"
-//    }
-//    overview-open-close {
-//        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
-//    }
-//}
+animations {
+    workspace-switch {
+        spring damping-ratio=0.80 stiffness=523 epsilon=0.0001
+    }
+    window-open {
+        duration-ms 150
+        curve "ease-out-expo"
+    }
+    window-close {
+        duration-ms 150
+        curve "ease-out-quad"
+    }
+    horizontal-view-movement {
+        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    }
+    window-movement {
+        spring damping-ratio=0.75 stiffness=323 epsilon=0.0001
+    }
+    window-resize {
+        spring damping-ratio=0.85 stiffness=423 epsilon=0.0001
+    }
+    config-notification-open-close {
+        spring damping-ratio=0.65 stiffness=923 epsilon=0.001
+    }
+    screenshot-ui-open {
+        duration-ms 200
+        curve "ease-out-quad"
+    }
+    overview-open-close {
+        spring damping-ratio=0.85 stiffness=800 epsilon=0.0001
+    }
+}
 
 overview {
     workspace-shadow {
@@ -352,7 +358,7 @@ window-rule {
     open-on-workspace "misc"
 }
 
-// Block out mako notifications from screencasts.
+// Block out notifications from screencasts.
 layer-rule {
     match namespace="^notifications$"
 
@@ -365,11 +371,11 @@ layer-rule {
   place-within-backdrop true
 }
 
-spawn-at-startup "noctalia-shell"
+spawn-sh-at-startup "QT_QPA_PLATFORMTHEME=gtk3 noctalia-shell"
 spawn-at-startup "keepassxc"
 spawn-at-startup "com.spotify.Client"
 spawn-at-startup "slack"
 spawn-at-startup "teams-for-linux"
-spawn-at-startup "notion-app"
 spawn-at-startup "firefox"
+spawn-at-startup "wl-paste --watch cliphist store"
 // notion and thunderbird

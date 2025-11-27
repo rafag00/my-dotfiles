@@ -12,6 +12,11 @@
 
   hardware.graphics = {
     enable = true;
+    extraPackages = with pkgs; [ 
+      libva
+      intel-media-driver
+      nvidia-vaapi-driver
+    ];
   };
 
   hardware.nvidia = {
@@ -19,6 +24,8 @@
     open = false;
     nvidiaSettings = true;
   };
+
+  services.xserver.videoDrivers = ["nvidia"];
 
 	hardware.nvidia.prime = {
     offload = {

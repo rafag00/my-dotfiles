@@ -18,6 +18,8 @@
       power-profiles-daemon.enable = true;
       gnome.gnome-keyring.enable = true;
       upower.enable = true; # Power management (required for DMS battery monitoring)
+      tumbler.enable = true; # Thumbnailer service for KDE
+      udisks2.enable = true; # For automounting drives
     };
 
     xdg.portal.config.niri = {
