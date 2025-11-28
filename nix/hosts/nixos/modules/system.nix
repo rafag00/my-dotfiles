@@ -1,4 +1,4 @@
-{host, pkgs, username, ...}:{
+{host, username, ...}:{
 
     nix = {
         settings = {

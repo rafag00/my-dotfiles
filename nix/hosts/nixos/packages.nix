@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, inputs, system, ... }: {
+{ pkgs, pkgs-stable, inputs, system, ... }: {
 
     nixpkgs.config = {
         allowUnfree = true;
@@ -7,6 +7,8 @@
     environment.systemPackages = 
     (
         with pkgs; [
+
+        inputs.noctalia.packages.${system}.default
 
         # CLI utils
         bash
@@ -33,11 +35,6 @@
         # Other
         appimage-run # run appimages
         home-manager
-        sbctl
-        hunspell
-        hunspellDicts.en_US
-        hunspellDicts.pt_PT
-        libsecret
         gpu-screen-recorder
 
         # For sddm-astronaut
@@ -46,14 +43,20 @@
         kdePackages.qtvirtualkeyboard
         kdePackages.kwallet
         kdePackages.kwallet-pam
-
-        cachix
+        
+        nh
 
     ])
      ++
-     ( with pkgs-unstable; [
-        inputs.noctalia.packages.${system}.default
-        nh
+     ( with pkgs-stable; [
+
+        sbctl
+        hunspell
+        hunspellDicts.en_US
+        hunspellDicts.pt_PT
+        libsecret
+
+        cachix
      ]);
 
     fonts.packages = with pkgs; [
@@ -63,7 +66,7 @@
         nerd-fonts.jetbrains-mono
         noto-fonts
         noto-fonts-cjk-sans
-        noto-fonts-emoji
+        noto-fonts-color-emoji
     ];
 
 }

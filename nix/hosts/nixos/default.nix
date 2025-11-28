@@ -17,7 +17,7 @@
         xdg-desktop-portal-gnome
         xdg-utils
         kdePackages.xdg-desktop-portal-kde
-        libsForQt5.xdg-desktop-portal-kde
+        #libsForQt5.xdg-desktop-portal-kde
       ];
     };
   };

@@ -10,7 +10,7 @@
 
         xdg.portal.extraPortals = with pkgs; [
             kdePackages.xdg-desktop-portal-kde
-            libsForQt5.xdg-desktop-portal-kde
+            #libsForQt5.xdg-desktop-portal-kde
         ];
 
         environment.systemPackages = with pkgs; [
@@ -18,7 +18,7 @@
             xdg-desktop-portal
             xdg-desktop-portal-gtk
             kdePackages.xdg-desktop-portal-kde
-            libsForQt5.xdg-desktop-portal-kde
+            #libsForQt5.xdg-desktop-portal-kde
         ];
 
         # environment.sessionVariables = {

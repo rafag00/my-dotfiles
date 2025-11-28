@@ -2,34 +2,34 @@
     description = "System configuration";
 
     inputs = {
-        nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
+        nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
-        nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+        nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
         home-manager = {
-            url = "github:nix-community/home-manager/release-25.05";
+            url = "github:nix-community/home-manager";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
         nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
         lanzaboote = {
-            url = "github:nix-community/lanzaboote/v0.4.2";
+            url = "github:nix-community/lanzaboote/v0.4.3";
             inputs.nixpkgs.follows = "nixpkgs";
         };
 
         noctalia = {
             url = "github:noctalia-dev/noctalia-shell";
-            inputs.nixpkgs.follows = "nixpkgs-unstable";
+            inputs.nixpkgs.follows = "nixpkgs";
         };
 
     };
     
-    outputs = { nixpkgs, nixpkgs-unstable, ... } @ inputs:
+    outputs = { nixpkgs, nixpkgs-stable, ... } @ inputs:
         let
             system = "x86_64-linux";
             pkgs = import nixpkgs { inherit system; };
-            pkgs-unstable = import nixpkgs-unstable { inherit system; };
+            pkgs-stable = import nixpkgs-stable { inherit system; };
             
             mkHost = {hostname, username}: nixpkgs.lib.nixosSystem {
                 inherit system;
@@ -37,7 +37,7 @@
                     inherit inputs;
                     host = hostname;
                     inherit username;
-                    inherit pkgs-unstable;
+                    inherit pkgs-stable;
                     inherit system;
                 };
                 modules = [./hosts/${hostname}];
