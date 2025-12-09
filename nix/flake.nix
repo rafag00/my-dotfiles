@@ -30,6 +30,7 @@
             system = "x86_64-linux";
             pkgs = import nixpkgs { inherit system; };
             pkgs-stable = import nixpkgs-stable { inherit system; };
+
             
             mkHost = {hostname, username}: nixpkgs.lib.nixosSystem {
                 inherit system;
@@ -47,5 +48,6 @@
             nixosConfigurations = {
                 nixos = mkHost { hostname = "nixos"; username = "rafag00";};
             };
+
         };
 }

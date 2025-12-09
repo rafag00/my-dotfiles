@@ -36,7 +36,7 @@
         };
 
         initExtra = ''
-            eval "$(oh-my-posh init bash --config ~/nix/home-manager/rafag00/extra/tokyo.omp.json)"
+            eval "$(oh-my-posh init bash --config /home/rafag00/nix/home-manager/rafag00/extra/tokyo.omp.json)"
 
             fastfetch -c ~/nix/home-manager/rafag00/extra/fastfetchConfig.json
 

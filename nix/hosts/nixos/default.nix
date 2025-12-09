@@ -17,11 +17,11 @@
         xdg-desktop-portal-gnome
         xdg-utils
         kdePackages.xdg-desktop-portal-kde
+        xdg-desktop-portal-termfilechooser
         #libsForQt5.xdg-desktop-portal-kde
       ];
     };
   };
-
 
   plasma.enable = true;
   niri.enable = true;

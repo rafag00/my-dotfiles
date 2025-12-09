@@ -1,4 +1,4 @@
-{ pkgs, pkgs-stable, inputs, system, ... }: {
+{ pkgs, pkgs-stable, myPkgs, inputs, system, ... }: {
 
     nixpkgs.config = {
         allowUnfree = true;
@@ -57,7 +57,12 @@
         libsecret
 
         cachix
-     ]);
+     ])
+     ++
+     [
+        (pkgs.callPackage ./myPkgs/Notion { })
+     ];
+
 
     fonts.packages = with pkgs; [
         ibm-plex
