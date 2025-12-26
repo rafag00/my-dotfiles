@@ -1,13 +1,18 @@
-{ pkgs, pkgs-stable, myPkgs, inputs, system, ... }: {
+{
+  pkgs,
+  pkgs-stable,
+  myPkgs,
+  inputs,
+  system,
+  ...
+}: {
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
 
-    nixpkgs.config = {
-        allowUnfree = true;
-    };
-
-    environment.systemPackages = 
+  environment.systemPackages =
     (
-        with pkgs; [
-
+      with pkgs; [
         inputs.noctalia.packages.${system}.default
 
         # CLI utils
@@ -31,6 +36,7 @@
 
         # Sound
         pipewire
+        pulseaudio # To have pactl command for the vicinae extension
 
         # Other
         appimage-run # run appimages
@@ -43,35 +49,30 @@
         kdePackages.qtvirtualkeyboard
         kdePackages.kwallet
         kdePackages.kwallet-pam
-        
+
         nh
+      ]
+    )
+    ++ (with pkgs-stable; [
+      sbctl
+      hunspell
+      hunspellDicts.en_US
+      hunspellDicts.pt_PT
+      libsecret
 
+      cachix
     ])
-     ++
-     ( with pkgs-stable; [
-
-        sbctl
-        hunspell
-        hunspellDicts.en_US
-        hunspellDicts.pt_PT
-        libsecret
-
-        cachix
-     ])
-     ++
-     [
-        (pkgs.callPackage ./myPkgs/Notion { })
-     ];
-
-
-    fonts.packages = with pkgs; [
-        ibm-plex
-        inter-nerdfont
-        nerd-fonts.fira-code
-        nerd-fonts.jetbrains-mono
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-color-emoji
+    ++ [
+      (pkgs.callPackage ./myPkgs/Notion {})
     ];
 
+  fonts.packages = with pkgs; [
+    ibm-plex
+    inter-nerdfont
+    nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-color-emoji
+  ];
 }

@@ -7,9 +7,9 @@
     autoNumlock = true;
     theme = "sddm-astronaut-theme";
     settings = {
-        Theme = {
-          ThemeDir = "/usr/share/sddm/themes/";
-        };
+      Theme = {
+        ThemeDir = "/usr/share/sddm/themes/";
+      };
     };
   };
 }

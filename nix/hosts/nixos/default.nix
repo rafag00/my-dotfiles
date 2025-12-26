@@ -1,5 +1,10 @@
-{ config, lib, pkgs, inputs, ... }: {
-
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     #stylix.nixosModules.stylix
     ./hardware-configuration.nix
@@ -17,7 +22,6 @@
         xdg-desktop-portal-gnome
         xdg-utils
         kdePackages.xdg-desktop-portal-kde
-        xdg-desktop-portal-termfilechooser
         #libsForQt5.xdg-desktop-portal-kde
       ];
     };
@@ -31,7 +35,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # For development
+  services.envfs.enable = true;
+  programs.nix-ld.enable = true;
+
   system.stateVersion = "25.05";
-
 }
-

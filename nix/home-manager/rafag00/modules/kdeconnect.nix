@@ -1,6 +1,5 @@
 {
-    services.kdeconnect = {
-        enable = true;
-    };
+  services.kdeconnect = {
+    enable = true;
+  };
 }
-

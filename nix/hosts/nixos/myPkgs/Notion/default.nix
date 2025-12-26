@@ -7,7 +7,7 @@
 , autoPatchelfHook
 , electron_37-bin
 
-, pkgver ? "4.24.0"
+, pkgver ? "6.1.0"
 , bettersqlite3ver ? "12.4.0"
 , bufferutilver ? "4.0.9"
 , electronModuleVer ? "136"
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://desktop-release.notion-static.com/Notion%20Setup%20${pkgver}.exe";
-    sha256 = "f878e8e4d7c1155cb98279a0ba81b16aa5f589475c55ce334fc4d1a3666ee18f";
+    sha256 = "8d50c7a3f7208a6dcf2038a19a664a278c82b752ead7586a796fc10812f34245";
   };
 
   betterSqlite = fetchurl {

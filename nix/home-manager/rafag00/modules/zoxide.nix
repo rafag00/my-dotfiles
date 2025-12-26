@@ -1,7 +1,7 @@
 {
-    programs.zoxide = {
-        enable = true;
-        enableBashIntegration = true;
-        options = ["--cmd cd"];
-    };
+  programs.zoxide = {
+    enable = true;
+    enableBashIntegration = true;
+    options = ["--cmd cd"];
+  };
 }
