@@ -171,7 +171,7 @@ binds {
 layout {
     // Gaps and struts are the one to be more customized
 
-    gaps 2
+    gaps 8
 
     center-focused-column "on-overflow"
     always-center-single-column
@@ -194,17 +194,19 @@ layout {
     }
 
     struts {
-        left 6
-        right 6
-        top 2
-        bottom 2
+        //left 4
+        //right 4
+        top -2
+        bottom -2
     }
 
     focus-ring {
-        // off
+        on
         width 4
-        active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
-        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        active-gradient from="#ff8a2a" to="#8fd3ff" angle=45 in="oklch shorter hue" relative-to="workspace-view" 
+        //active-color "#ff8a2a"
+        inactive-color "#263248" 
+        urgent-color "#ff3b3b"     
     }
 
     // The border is a decoration drawn inside every window in the layout. It will take space away from windows. That is, if you have a border of 8px, then each window will be 8px smaller on each edge than if you had no border.
@@ -221,26 +223,32 @@ layout {
         // off
         on
         place-within-column
-        gap 5
+        gap 4
         width 8
         length total-proportion=1.0
         position "right"
         gaps-between-tabs 2
-        corner-radius 8
+        corner-radius 4
         // active-color "red"
         // inactive-color "gray"
         // urgent-color "blue"
-        active-gradient from="#800" to="#a33" angle=45
-        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
-        urgent-gradient from="#800" to="#a33" angle=45
+        active-color "#ff5a1f"
+        inactive-color "#263248" 
+        urgent-color "#ff3b3b"
+    }
+
+    shadow {
+        on
+        color "#00000055"
+        offset x=0 y=4
     }
 } 
 
 recent-windows {
 
     highlight {
-        active-color "#9b0000"
-        urgent-color "#ff9999ff"
+        active-color "#263248" 
+        urgent-color "#ff3b3b"
         padding 30
         corner-radius 10
     }
@@ -297,7 +305,7 @@ switch-events {
 }
 
 window-rule {
-    geometry-corner-radius 0
+    geometry-corner-radius 10
     clip-to-geometry true
 }
 

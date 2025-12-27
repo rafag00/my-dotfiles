@@ -34,6 +34,7 @@ in {
     kdePackages.knewstuff
     kdePackages.ksvg
     kdePackages.qtpositioning
+    glib
     #kdePackages.qt6ct
     brightnessctl
     # kdePackages.qtstyleplugin-kvantum
@@ -42,10 +43,10 @@ in {
 
   #xdg.configFile."niri/config.kdl".text = finalConfig;
 
-  home.file."config/dolphinrc".text = ''
-    [UiSettings]
-    ColorScheme=*
-  '';
+  #home.file.".config/dolphinrc".text = ''
+  #  [UiSettings]
+  #  ColorScheme=*
+  #'';
 
   # XWayland satellite service for X11 app support
   systemd.user.services.xwayland-satellite = {
