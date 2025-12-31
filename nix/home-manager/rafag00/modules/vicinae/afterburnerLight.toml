@@ -1,0 +1,85 @@
+[meta]
+name = "Afterburner Light"
+description = "Theme generated for Afterburner - Cloud Deck variant"
+variant = "light"
+icon = "afterburner.svg"
+
+[colors.core]
+accent = "#94a3b8"
+accent_foreground = "#0f1113"
+background = "#d1d5db"
+foreground = "#1f2937"
+secondary_background = "#e5e7eb"
+border = "#9ca3af"
+
+[colors.main_window]
+border = "#9ca3af"
+
+[colors.settings_window]
+border = "#6b7280"
+
+[colors.accents]
+blue = "#1e40af"
+green = "#065f46"
+magenta = "#64748b"
+orange = { name = "#b45309", lighter = 20 }
+red = "#991b1b"
+yellow = "#b45309"
+cyan = "#155e75"
+purple = "#64748b"
+
+[colors.text]
+default = "#1f2937"
+muted = "#4b5563"
+danger = "#991b1b"
+success = "#065f46"
+placeholder = { name = "#1f2937", opacity = 0.5 }
+
+[colors.text.selection]
+background = "#94a3b8"
+foreground = "#0f1113"
+
+[colors.text.links]
+default = "#1e40af"
+visited = { name = "#1e40af", darker = 20 }
+
+[colors.input]
+border = "#9ca3af"
+border_focus = "#b45309"
+border_error = "#991b1b"
+
+[colors.button.primary]
+background = "#e5e7eb"
+foreground = "#1f2937"
+
+[colors.button.primary.hover]
+background = "#cbd5e1"  
+
+[colors.button.primary.focus]
+outline = "#94a3b8"
+
+[colors.list.item.hover]
+background = { name = "#94a3b8", opacity = 0.15 }  
+foreground = "#111827"
+
+[colors.list.item.selection]
+background = { name = "#94a3b8", opacity = 0.3 }
+foreground = "#111827"
+secondary_background = "#94a3b8"
+secondary_foreground = "#0f1113"
+
+[colors.grid.item]
+background = "#e5e7eb"
+
+[colors.grid.item.hover]
+outline = { name = "#94a3b8", opacity = 0.5 }
+
+[colors.grid.item.selection]
+outline = { name = "#b45309" }
+
+[colors.scrollbars]
+background = { name = "#94a3b8", opacity = 0.2 }
+
+[colors.loading]
+bar = "#b45309"
+spinner = "#b45309"

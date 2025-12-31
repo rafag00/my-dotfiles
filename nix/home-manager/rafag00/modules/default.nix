@@ -10,8 +10,9 @@
     ./ohmyposh.nix
     ./rclone.nix
     ./niri
+    ./noctalia
     ./zoxide.nix
-    ./vicinae.nix
+    ./vicinae
     #./dankMaterialShell.nix
   ];
 }

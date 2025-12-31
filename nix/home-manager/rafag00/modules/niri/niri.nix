@@ -43,6 +43,8 @@ in {
 
   #xdg.configFile."niri/config.kdl".text = finalConfig;
 
+  xdg.configFile."niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/home-manager/rafag00/modules/niri/config.kdl";
+
   #home.file.".config/dolphinrc".text = ''
   #  [UiSettings]
   #  ColorScheme=*

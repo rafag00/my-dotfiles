@@ -20,6 +20,7 @@
         bash-completion
         bluez
         bluez-tools
+        btop
         eza
         fastfetch
         fzf

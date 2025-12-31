@@ -1,0 +1,28 @@
+# General Colors
+background = #0f1113
+foreground = #cbd5e1
+
+# Selection & Cursor
+selection-background = #334155
+selection-foreground = #f8fafc
+cursor-color = #94a3b8
+cursor-text = #0f1113
+
+# ANSI 16-Color Palette
+palette = 0=#0f1113 
+palette = 1=#e11d48 
+palette = 2=#10b981 
+palette = 3=#ff8c00 
+palette = 4=#3b82f6 
+palette = 5=#64748b 
+palette = 6=#06b6d4 
+palette = 7=#cbd5e1 
+
+palette = 8=#475569 
+palette = 9=#fb7185 
+palette = 10=#34d399
+palette = 11=#ffb347
+palette = 12=#60a5fa
+palette = 13=#94a3b8
+palette = 14=#67e8f9
+palette = 15=#f1f5f9

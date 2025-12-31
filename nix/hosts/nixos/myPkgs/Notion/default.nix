@@ -1,29 +1,27 @@
-{ lib
-, stdenv
-, fetchurl
-, p7zip
-, asar
-, makeWrapper
-, autoPatchelfHook
-, electron_37-bin
-
-, pkgver ? "6.1.0"
-, bettersqlite3ver ? "12.4.0"
-, bufferutilver ? "4.0.9"
-, electronModuleVer ? "136"
-
-, icon ? ./notion.png
-, desktopFile ? ./notion.desktop
-, wrapper ? ./notion-app
+{
+  lib,
+  stdenv,
+  fetchurl,
+  p7zip,
+  asar,
+  makeWrapper,
+  autoPatchelfHook,
+  electron_37-bin,
+  pkgver ? "6.3.2",
+  bettersqlite3ver ? "12.4.0",
+  bufferutilver ? "4.0.9",
+  electronModuleVer ? "136",
+  icon ? ./notion.png,
+  desktopFile ? ./notion.desktop,
+  wrapper ? ./notion-app,
 }:
-
 stdenv.mkDerivation rec {
   pname = "notion-app-electron";
   version = pkgver;
 
   src = fetchurl {
     url = "https://desktop-release.notion-static.com/Notion%20Setup%20${pkgver}.exe";
-    sha256 = "8d50c7a3f7208a6dcf2038a19a664a278c82b752ead7586a796fc10812f34245";
+    sha256 = "b279b934260125f69ccdf1051894d531741e7ea516c91ca55d4b134a41a6696b";
   };
 
   betterSqlite = fetchurl {
@@ -36,15 +34,15 @@ stdenv.mkDerivation rec {
     sha256 = "2139aae79c5a4fd4d07467bd9b7872ea109483aa43b3dfd6c8d3725ccba009be";
   };
 
-  nativeBuildInputs = [ 
-    p7zip 
-    asar 
-    makeWrapper 
+  nativeBuildInputs = [
+    p7zip
+    asar
+    makeWrapper
     autoPatchelfHook
   ];
 
-  buildInputs = [ 
-    electron_37-bin 
+  buildInputs = [
+    electron_37-bin
     stdenv.cc.cc.lib
     # zlib           # Uncomment if you get zlib errors later
   ];
@@ -72,18 +70,18 @@ stdenv.mkDerivation rec {
     # fixing tray icon and right click menu
     sed -i 's|this.tray.on("click",(()=>{this.onClick()}))|this.tray.setContextMenu(this.trayMenu),this.tray.on("click",(()=>{this.onClick()}))|g' asar_patched/.webpack/main/index.js
     sed -i 's|getIcon(){[^}]*}|getIcon(){return require("path").resolve(__dirname, "trayIcon.png");}|g' asar_patched/.webpack/main/index.js
-    
+
     # fake the useragent as windows to fix the spellchecker languages selector and other issues
     sed -i 's|e.setUserAgent(`''${e.getUserAgent()} WantsServiceWorker`),|e.setUserAgent(`''${e.getUserAgent().replace("Linux", "Windows")} WantsServiceWorker`),|g' asar_patched/.webpack/main/index.js
-    
+
     # fully disabling auto updates
     sed -i 's|if("darwin"===process.platform){const e=l.systemPreferences?.getUserDefault(C,"boolean"),t=M.Store.getState().app.preferences?.isAutoUpdaterDisabled,r=M.Store.getState().app.preferences?.isAutoUpdaterOSSupportBypass,n=(0,y.isOsUnsupportedForAutoUpdates)();return Boolean(e\|\|t\|\|!r\&\&n)}return!1|return!0|g' asar_patched/.webpack/main/index.js
-    
+
     # avoid running duplicated instances, fixes url opening
     sed -i 's|handleOpenUrl);else if("win32"===process.platform)|handleOpenUrl);else if("linux"===process.platform)|g' asar_patched/.webpack/main/index.js
     sed -i 's|async function(){(0,E.setupCrashReporter)(),|o.app.requestSingleInstanceLock() ? async function(){(0,E.setupCrashReporter)(),|g' asar_patched/.webpack/main/index.js
     sed -i 's|setupCleanup)()}()}()|setupCleanup)()}()}() : o.app.quit();|g' asar_patched/.webpack/main/index.js
-    
+
     # use the windows version of the tray menu
     sed -i 's|r="win32"===process.platform?function(e,t)|r="linux"===process.platform?function(e,t)|g' asar_patched/.webpack/main/index.js
 
@@ -113,7 +111,7 @@ stdenv.mkDerivation rec {
     install -Dm755 ${wrapper} "$out/bin/notion-app"
     install -Dm644 ${desktopFile} "$out/share/applications/notion.desktop"
     install -Dm644 ${icon} "$out/share/icons/hicolor/256x256/apps/notion.png"
-    
+
     # This fixes the wrapper:
     #  - Set the correct electron path
     #  - Set the correct notion lib path
@@ -121,7 +119,7 @@ stdenv.mkDerivation rec {
     substituteInPlace "$out/bin/notion-app" \
       --replace "electron37" "${electron_37-bin}/bin/electron" \
       --replace "/usr/lib/notion-app" "$outLib" \
-      --replace "# Launch" "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:${lib.makeLibraryPath [ stdenv.cc.cc.lib ]}
+      --replace "# Launch" "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:${lib.makeLibraryPath [stdenv.cc.cc.lib]}
     cd \"$outLib\"
     "
   '';
@@ -130,7 +128,7 @@ stdenv.mkDerivation rec {
     description = "Your connected workspace for wiki, docs & projects. Follows the notion-app-electron from the aur.";
     homepage = "https://www.notion.so/desktop";
     license = licenses.unfree;
-    platforms = [ "x86_64-linux" ];
-    maintainers = [ ];
+    platforms = ["x86_64-linux"];
+    maintainers = [];
   };
 }

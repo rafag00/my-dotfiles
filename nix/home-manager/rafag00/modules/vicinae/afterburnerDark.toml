@@ -1,0 +1,85 @@
+[meta]
+name = "Afterburner Dark"
+description = "Theme generated for Afterburner - Stealth variant"
+variant = "dark"
+icon = "afterburner.svg"
+
+[colors.core]
+accent = "#94a3b8"
+accent_foreground = "#0f1113"
+background = "#0f1113"
+foreground = "#cbd5e1"
+secondary_background = "#1a1d21"
+border = "#334155"
+
+[colors.main_window]
+border = "#334155"
+
+[colors.settings_window]
+border = "#475569"
+
+[colors.accents]
+blue = "#3b82f6"
+green = "#10b981"
+magenta = "#64748b"
+orange = { name = "#ff8c00", lighter = 10 }
+red = "#ef4444"
+yellow = "#ff8c00"
+cyan = "#06b6d4"
+purple = "#64748b"
+
+[colors.text]
+default = "#cbd5e1"
+muted = "#64748b"
+danger = "#ef4444"
+success = "#10b981"
+placeholder = { name = "#cbd5e1", opacity = 0.4 }
+
+[colors.text.selection]
+background = "#94a3b8"
+foreground = "#0f1113"
+
+[colors.text.links]
+default = "#3b82f6"
+visited = { name = "#3b82f6", darker = 20 }
+
+[colors.input]
+border = "#334155"
+border_focus = "#ff8c00"
+border_error = "#ef4444"
+
+[colors.button.primary]
+background = "#1a1d21"
+foreground = "#cbd5e1"
+
+[colors.button.primary.hover]
+background = "#334155"  
+
+[colors.button.primary.focus]
+outline = "#94a3b8"
+
+[colors.list.item.hover]
+background = { name = "#94a3b8", opacity = 0.1 }  
+foreground = "#f8fafc"
+
+[colors.list.item.selection]
+background = { name = "#94a3b8", opacity = 0.2 }
+foreground = "#f8fafc"
+secondary_background = "#94a3b8"
+secondary_foreground = "#0f1113"
+
+[colors.grid.item]
+background = "#1a1d21"
+
+[colors.grid.item.hover]
+outline = { name = "#94a3b8", opacity = 0.8 }
+
+[colors.grid.item.selection]
+outline = { name = "#ff8c00" }
+
+[colors.scrollbars]
+background = { name = "#94a3b8", opacity = 0.2 }
+
+[colors.loading]
+bar = "#ff8c00"
+spinner = "#ff8c00"
