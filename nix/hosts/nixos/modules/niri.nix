@@ -22,7 +22,7 @@
       blueman.enable = true; # Bluetooth Support
       power-profiles-daemon.enable = true;
       gnome.gnome-keyring.enable = true;
-      upower.enable = true; # Power management (required for DMS battery monitoring)
+      upower.enable = true; # Power management
       tumbler.enable = true; # Thumbnailer service for KDE
       udisks2.enable = true; # For automounting drives
     };

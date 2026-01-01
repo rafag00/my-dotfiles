@@ -10,5 +10,9 @@
     };
   };
 
-  #xdg.configFile."noctalia/colorschemes/Afterburner/Afterburner.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/home-manager/rafag00/modules/noctalia/Afterburner.json";
+  xdg.dataFile."vicinae/themes/afterburner.svg".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/home-manager/rafag00/extra/afterburner.svg";
+
+  xdg.dataFile."vicinae/themes/afterburnerDark.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/home-manager/rafag00/modules/vicinae/afterburnerDark.toml";
+
+  xdg.dataFile."vicinae/themes/afterburnerLight.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/home-manager/rafag00/modules/vicinae/afterburnerLight.toml";
 }

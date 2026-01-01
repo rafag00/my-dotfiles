@@ -162,7 +162,9 @@ binds {
     Mod+L hotkey-overlay-title="Lock screen 🔒" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
     Mod+Shift+P hotkey-overlay-title="Light/Dark toggle 🌗" { spawn "noctalia-shell" "ipc" "call" "darkMode" "toggle"; }
     Mod+Space hotkey-overlay-title="Open Control Center ⚙️" { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
-    //Mod+Shift+P { spawn "bash" "-c" "noctalia-shell ipc call darkMode toggle && if plasma-apply-colorscheme BreezeDark | grep -q \"BreezeDark\"; then plasma-apply-colorscheme BreezeLight; fi";}
+    
+    // Back up for color change with the script
+    // Mod+Shift+P { spawn "bash" "-c" "noctalia-shell ipc call darkMode toggle && plasma-apply-colorscheme -l | grep -q \"* afterburner-dark (current color scheme)\" && { plasma-apply-colorscheme afterburner-light; vicinae vicinae://theme/set/afterburnerLight; } || { plasma-apply-colorscheme afterburner-dark; vicinae vicinae://theme/set/afterburnerDark; }";}
 
     // Misc
     Mod+Shift+Slash hotkey-overlay-title=null { show-hotkey-overlay; }
@@ -170,7 +172,6 @@ binds {
 }
 
 layout {
-    // Gaps and struts are the one to be more customized
 
     gaps 6
 
@@ -195,10 +196,10 @@ layout {
     }
 
     struts {
-        //left 4
-        //right 4
-        //top -2
-        //bottom -2
+        left -2
+        right -2
+        top -2
+        bottom -2
     }
 
     focus-ring {
@@ -362,10 +363,12 @@ layer-rule {
 }
 
 spawn-sh-at-startup "QT_QPA_PLATFORMTHEME=gtk3 noctalia-shell"
+spawn-sh-at-startup "noctalia-shell ipc call lockScreen lock"
 spawn-at-startup "keepassxc"
-spawn-at-startup "com.spotify.Client"
-spawn-at-startup "slack"
-spawn-at-startup "teams-for-linux"
+// spawn-at-startup "com.spotify.Client"
+spawn-at-startup "notion-app"
+// spawn-at-startup "slack"
+// spawn-at-startup "teams-for-linux"
 spawn-at-startup "firefox"
 spawn-at-startup "wl-paste --watch cliphist store"
 // notion and thunderbird

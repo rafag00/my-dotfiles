@@ -29,13 +29,22 @@ in {
     wl-clipboard
     cliphist
     gnome-keyring
-    kdePackages.polkit-kde-agent-1
+
     xdg-desktop-portal-gnome
+
+    kdePackages.polkit-kde-agent-1
     kdePackages.knewstuff
     kdePackages.ksvg
     kdePackages.qtpositioning
+    kdePackages.kio
+    kdePackages.kio-extras
+    kdePackages.plasma-integration
+    kdePackages.kconfig
+    kdePackages.kservice
+    kdePackages.qtwayland
+    kdePackages.systemsettings
+
     glib
-    #kdePackages.qt6ct
     brightnessctl
     # kdePackages.qtstyleplugin-kvantum
     # libsForQt5.qt5ct

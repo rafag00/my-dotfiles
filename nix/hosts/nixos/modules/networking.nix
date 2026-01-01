@@ -10,19 +10,22 @@
   #networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
+  services.resolved.enable = true;
+
   networking = {
     hostName = "${host}";
 
     networkmanager = {
       enable = true;
-      dns = "none";
+      dns = "systemd-resolved";
       plugins = with pkgs; [
         networkmanager-openvpn
       ];
+      connectionConfig."ipv4.ignore-auto-dns" = true;
+      connectionConfig."ipv6.ignore-auto-dns" = true;
     };
 
     useDHCP = false;
-    dhcpcd.enable = false;
 
     nameservers = [
       "1.1.1.1"
