@@ -1,46 +1,55 @@
 {
   "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "border": "4",
+    "accent": "3",
+    "text": "7",
+    "secondary": "5",
+    "success": "2",
+    "error": "1",
+    "info": "6"
+  },
   "blocks": [
     {
       "alignment": "left",
-      "leading_diamond": "<#7eb8da>\u250f</>",
+      "leading_diamond": "<p:border>\u250f</>",
       "segments": [
         {
-          "foreground": "#7eb8da",
+          "foreground": "p:border",
           "style": "diamond",
-          "template": "[<#ffffff>\ueb99</> {{ .UserName }} @ <#ffffff>\uf108</> {{ .HostName }}]",
+          "template": "[<p:text>\ueb99</> {{ .UserName }} @ <p:text>\uf108</> {{ .HostName }}]",
           "type": "session"
         },
         {
-          "foreground": "#be9ddf",
+          "foreground": "p:info",
           "style": "diamond",
-          "template": "[<#ffffff>\ue266</> RAM: {{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB]",
+          "template": "[<p:text>\ue266</> RAM: {{ (div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0) }}/{{ (div .PhysicalTotalMemory 1073741824.0) }}GB]",
           "type": "sysinfo"
         },
         {
-          "foreground": "#f36943",
+          "foreground": "p:accent",
           "foreground_templates": [
-            "{{if eq \"Charging\" .State.String}}#40c4ff{{end}}",
-            "{{if eq \"Discharging\" .State.String}}#ff5722{{end}}",
-            "{{if eq \"Full\" .State.String}}#4caf50{{end}}"
+            "{{if eq \"Charging\" .State.String}}p:border{{end}}",
+            "{{if eq \"Discharging\" .State.String}}p:accent{{end}}",
+            "{{if eq \"Full\" .State.String}}p:success{{end}}"
           ],
-          "properties": {
-            "charged_icon": "<#ffffff>\ue22f</> ",
+          "options": {
+            "charged_icon": "<p:text>\ue22f</> ",
             "charging_icon": "\ueb2d ",
-            "discharging_icon": "<#ffff00>\uf244</> "
+            "discharging_icon": "<p:accent>\uf244</> "
           },
           "style": "plain",
           "template": "[{{ if not .Error }}{{ .Icon }}{{ .Percentage }}{{ end }}{{ .Error }}\uf295]",
           "type": "battery"
         },
         {
-          "foreground": "#be9ddf",
-          "properties": {
+          "foreground": "p:info",
+          "options": {
             "style": "dallas",
             "threshold": 0
           },
           "style": "diamond",
-          "template": "[<#ffffff>\uf252</> {{ .FormattedMs }}s]",
+          "template": "[<p:text>\uf252</> {{ .FormattedMs }}s]",
           "type": "executiontime"
         }
       ],
@@ -49,54 +58,48 @@
     {
       "alignment": "left",
       "newline": true,
-      "leading_diamond": "<#7eb8da>\u2523</>",
+      "leading_diamond": "<p:border>\u2523</>",
       "segments": [
         {
-          "foreground": "#7eb8da",
+          "foreground": "p:border",
           "style": "diamond",
-          "template": "[<#ffffff>\uebd8</> Subscription: <#ffff00>{{ .Name }}</>]",
+          "template": "[<p:text>\uebd8</> Subscription: <p:accent>{{ .Name }}</>]",
           "type": "az"
         },
         {
-          "foreground": "#7eb8da",
+          "foreground": "p:border",
           "style": "diamond",
-          "template": "[<#ffffff>\uebd8</> Azure Developer CLI Environment: <#ffff00>{{ .DefaultEnvironment  }}</> :: <#ffff00>{{ .Version }}</>]",
+          "template": "[<p:text>\uebd8</> Azure Dev CLI: <p:accent>{{ .DefaultEnvironment }}</>]",
           "type": "azd"
         },
         {
-          "foreground": "#7eb8da",
+          "foreground": "p:border",
           "style": "diamond",
-          "template": "[<#ffffff>\uf270</> <#ffff00>{{ .Profile }}</>{{if .Region}}@<#ffff00>{{ .Region }}</>{{ end }}]",
+          "template": "[<p:text>\uf270</> <p:accent>{{ .Profile }}</>{{if .Region}}@<p:accent>{{ .Region }}</>{{ end }}]",
           "type": "aws"
         },
         {
-          "foreground": "#7eb8da",
+          "foreground": "p:border",
           "style": "diamond",
-          "template": "[{{ if .Error }}{{ .Error }}{{ else }}<#ffffff>\uf1a0</> <#ffff00>{{ .Project }}</> :: <#ffff00>{{.Account}}</>{{ end }}]",
+          "template": "[{{ if .Error }}{{ .Error }}{{ else }}<p:text>\uf1a0</> <p:accent>{{ .Project }}</>{{ end }}]",
           "type": "gcp"
         },
         {
-          "foreground": "#ffa5d8",
+          "foreground": "p:secondary",
           "style": "diamond",
-          "template": "[<#ffffff>\uf10fe</> <#ffff00>{{.Context}}</>{{if .Namespace}} :: <#ffff00>{{.Namespace}}</>{{end}}]",
+          "template": "[<p:text>\uf10fe</> <p:accent>{{.Context}}</>]",
           "type": "kubectl"
         },
         {
-          "foreground": "#ffa5d8",
+          "foreground": "p:border",
           "style": "diamond",
-          "template": "[{{ if .Error }}{{ .Error }}{{ else }}{{ if .Name }}<#ffffff>\uf487</> {{ .Name }}{{ end }}{{ if .Target }} {{ .Target }}{{ end }}{{ end }}]",
-          "type": "project"
-        },
-        {
-          "foreground": "#7eb8da",
-          "style": "diamond",
-          "template": "[<#ffffff> </> <#ffff00>{{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}</>] ",
+          "template": "[<p:text> </> <p:accent>{{ .Full }}</>] ",
           "type": "python"
         },
         {
-          "foreground": "#7eb8da",
+          "foreground": "p:border",
           "style": "diamond",
-          "template": "{{ if ne .Type \"unknown\" }}[<#ffffff>\ue843 </> <#ffff00>nix-{{ .Type }}</>]{{ end }}",
+          "template": "{{ if ne .Type \"unknown\" }}[<p:text>\ue843 </> <p:accent>nix-{{ .Type }}</>]{{ end }}",
           "type": "nix-shell"
         }
       ],
@@ -105,26 +108,24 @@
     {
       "alignment": "left",
       "newline": true,
-      "leading_diamond": "<#7eb8da>\u2523</>",
+      "leading_diamond": "<p:border>\u2523</>",
       "segments": [
         {
-          "foreground": "#7eb8da",
-          "properties": {
+          "foreground": "p:border",
+          "options": {
             "style": "full"
           },
           "style": "diamond",
-          "template": "[<#ffffff>\uf115</> <#98bfad>{{ .Path }}</>]",
+          "template": "[<p:text>\uf115</> <p:success>{{ .Path }}</>]",
           "type": "path"
         },
         {
-          "foreground": "#ffa5d8",
-          "properties": {
-            "fetch_stash_count": true,
-            "fetch_status": true,
-            "fetch_upstream_icon": true
+          "foreground": "p:secondary",
+          "options": {
+            "fetch_status": true
           },
           "style": "plain",
-          "template": "[<#ffffff>{{ .UpstreamIcon }} </>{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <#ffffff>\uf044</> {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} <#ffffff>\uf046</> {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} <#ffffff>\ueb4b</> {{ .StashCount }}{{ end }}]",
+          "template": "[<p:text>{{ .UpstreamIcon }} </>{{ .HEAD }}{{ if .Working.Changed }} <p:text>\uf044</> {{ .Working.String }}{{ end }}]",
           "type": "git"
         }
       ],
@@ -133,17 +134,17 @@
     {
       "alignment": "left",
       "newline": true,
-      "leading_diamond": "<#7eb8da>\u2514\u2500</>",
+      "leading_diamond": "<p:border>\u2514\u2500</>",
       "segments": [
         {
           "style": "diamond",
-            "template": "<#ffff00>[#]</>",
+          "template": "<p:accent>[#]</>",
           "type": "root"
         },
         {
-          "foreground": "#ffa5d8",
+          "foreground": "p:error",
           "style": "diamond",
-          "template": "[<#ffffff>\uea6c</> Error, check your command]",
+          "template": "[<p:text>\uea6c</> Error]",
           "type": "status"
         },
         {
@@ -156,17 +157,8 @@
     }
   ],
   "final_space": true,
-  "secondary_prompt": {
-    "background": "transparent",
-    "template": " "
-  },
-  "valid_line": {
-    "background": "transparent",
-    "template": "> "
-  },
   "error_line": {
-    "background": "transparent",
-    "template": "<#ff0000>\uea87</> "
+    "template": "<p:error>\uea87</> "
   },
   "version": 3
 }
