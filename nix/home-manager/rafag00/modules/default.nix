@@ -13,6 +13,8 @@
     ./noctalia
     ./zoxide.nix
     ./vicinae
+    ./vscode.nix
+    #./starship.nix
     #./dankMaterialShell.nix
   ];
 }

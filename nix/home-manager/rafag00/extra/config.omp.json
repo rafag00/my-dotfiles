@@ -1,0 +1,109 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "version": 4,
+  "final_space": true,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "path",
+          "style": "plain",
+          "foreground": "p:fg",
+          "template": "<p:accent>\uf115  {{ .Path }}</> ",
+          "options": {
+            "style": "folder"
+          }
+        },
+        {
+          "type": "git",
+          "style": "plain",
+          "powerline_symbol": "\ue0b0",
+          "template": "on <p:accent>{{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \ueb4b</> {{ .StashCount }}{{ end }}</> ",
+          "foreground": "p:fg"
+        },
+        {
+          "type": "project",
+          "style": "plain",
+          "powerline_symbol": "\ue0b0",
+          "template": "is <p:accent>\ueb30 {{ .Name }}{{ if .Version }} {{ .Version }}{{ end }}</> ",
+          "foreground": "p:fg"
+        },
+        {
+          "type": "python",
+          "style": "plain",
+          "powerline_symbol": "\ue0b0",
+          "template": "via <p:accent>\ue235 {{ if .Error }}{{ .Error }}{{ else }}{{ if .Venv }}{{ .Venv }} {{ end }}{{ .Full }}{{ end }}</> ",
+          "foreground": "p:fg"
+        },
+        {
+          "type": "nix-shell",
+          "style": "plain",
+          "powerline_symbol": "\ue0b0",
+          "template": "{{ if ne .Type \"unknown\" }}via <p:accent>\uf313 nix-{{ .Type }}</>{{ end }} ",
+          "foreground": "p:fg"
+        },
+        {
+          "type": "rust",
+          "style": "plain",
+          "powerline_symbol": "\ue0b0",
+          "template": "via <p:accent>\ue7a8 {{ if .Error }}{{ .Error }}{{ else }}{{ .Full }}{{ end }}</> ",
+          "foreground": "p:fg"
+        },
+        {
+          "type": "docker",
+          "style": "plain",
+          "powerline_symbol": "\ue0b0",
+          "template": "runner <p:accent>\uf308 {{ .Context }}</> ",
+          "foreground": "p:fg"
+        },
+        {
+          "type": "kubectl",
+          "style": "plain",
+          "powerline_symbol": "\ue0b0",
+          "template": "runner <p:accent>\u2388 {{ .Context }}{{ if .Namespace }} :: {{ .Namespace }}{{ end }}</> ",
+          "foreground": "p:fg"
+        },
+        {
+          "type": "executiontime",
+          "style": "plain",
+          "powerline_symbol": "\ue0b0",
+          "template": "took <p:accent>\uf252 {{ .FormattedMs }}</> ",
+          "foreground": "p:fg"
+        },
+        {
+          "type": "status",
+          "style": "plain",
+          "foreground": "p:success",
+          "foreground_templates": [
+            "{{ if gt .Code 0 }}p:error{{ end }}"
+          ],
+          "template": "{{ if gt .Code 0 }}\u2717{{ else }}\u2713{{ end }} ",
+          "options": {
+            "always_enabled": true
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "text",
+          "style": "diamond",
+          "powerline_symbol": "\ue0b0",
+          "template": " \u276f",
+          "foreground": "p:fg"
+        }
+      ],
+      "newline": true
+    }
+  ],
+  "palette": {
+    "accent": "magenta",
+    "success": "green",
+    "error": "red"
+  }
+}

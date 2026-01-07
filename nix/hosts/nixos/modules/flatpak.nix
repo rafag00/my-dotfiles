@@ -8,6 +8,8 @@
     packages = [
       "com.spotify.Client"
       "dev.vencord.Vesktop"
+      "eu.betterbird.Betterbird"
+      "com.rtosta.zapzap"
     ];
   };
 }

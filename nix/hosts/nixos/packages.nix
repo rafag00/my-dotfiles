@@ -27,7 +27,7 @@
         git
         nano
         nix-bash-completions
-        oh-my-posh
+        #oh-my-posh
         rclone
         ripgrep # Improved Grep
         unrar # Tool For Handling .rar Files

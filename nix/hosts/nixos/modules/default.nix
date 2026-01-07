@@ -13,6 +13,6 @@
     ./system.nix
     ./user.nix
     ./xserver.nix
-    ./zram.nix
+    #./zram.nix
   ];
 }

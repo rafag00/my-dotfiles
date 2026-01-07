@@ -14,7 +14,10 @@
   systemd.user.services.rCloneMounts = {
     Unit = {
       Description = "Mount all rClone configurations";
-      After = ["network.target"];
+      After = ["network-online.target"];
+      Wants = ["network-online.target"];
+      Restart = "on-failure";
+      RestartSec = 10;
     };
     Service = let
       home = config.home.homeDirectory;
@@ -24,8 +27,15 @@
         remotes=$(${pkgs.rclone}/bin/rclone --config=${home}/.config/rclone/rclone.conf listremotes)
         for remote in $remotes;
         do
-        name=$(/usr/bin/env echo "$remote" | /usr/bin/env sed "s/://g")
-        /usr/bin/env mkdir -p ${home}/"$name"
+          name=$(echo "$remote" | sed "s/://g")
+          dir="${home}/$name"
+
+          # Unmount if stale
+          if mountpoint -q "$dir"; then
+              fusermount -uz "$dir" || true
+          fi
+
+          mkdir -p "$dir"
         done
       ''}";
 

@@ -1,5 +1,6 @@
 {
   # add the user import for the config
+
   programs.bash = {
     enable = true;
     enableCompletion = true;

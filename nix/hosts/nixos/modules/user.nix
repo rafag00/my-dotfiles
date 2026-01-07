@@ -56,7 +56,6 @@
         libreoffice
         slack
         teams-for-linux
-        thunderbird
         zotero
         zoom-us
 
@@ -75,6 +74,8 @@
       ];
     };
   };
+
+  #programs.bash.blesh.enable = true;
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "rafag00";

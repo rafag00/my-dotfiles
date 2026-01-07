@@ -46,6 +46,7 @@ in {
 
     glib
     brightnessctl
+    ddcutil
     # kdePackages.qtstyleplugin-kvantum
     # libsForQt5.qt5ct
   ];

@@ -2,15 +2,14 @@ output "HDMI-A-1" {
     mode "1920x1080@165.000"
     scale 1
     transform "normal"
-    position x=1920 y=0
     focus-at-startup
 }
 
 output "eDP-1" {
     mode "1920x1080@60.030"
-    scale 1.25
-    transform "normal"
+    // scale 1.25
     position x=0 y=0
+    transform "normal"
     focus-at-startup
 }
 
@@ -47,6 +46,8 @@ binds {
     Mod+Right hotkey-overlay-title=null { focus-column-right; }
     Mod+Up { focus-window-or-workspace-up; }
     Mod+Down { focus-window-or-workspace-down; }
+    Mod+Ctrl+Left { focus-monitor-left; }
+    Mod+Ctrl+Right { focus-monitor-right; }
 
     // Size adjusting
     Mod+Minus { set-column-width "-10%"; }
@@ -85,6 +86,9 @@ binds {
     Mod+Shift+Up { move-window-up-or-to-workspace-up; }
     Mod+Ctrl+Down hotkey-overlay-title=null { move-column-to-workspace-down; }
     Mod+Ctrl+Up hotkey-overlay-title=null { move-column-to-workspace-up; }
+    Mod+Ctrl+Shift+Right { move-window-to-monitor-right; }
+    Mod+Ctrl+Shift+Left { move-window-to-monitor-left; }
+    
 
     // Unify or expel columns with each other
     Mod+BracketLeft hotkey-overlay-title=null { consume-or-expel-window-left; }
@@ -113,6 +117,8 @@ binds {
     Mod+Ctrl+F hotkey-overlay-title=null { switch-focus-between-floating-and-tiling; }
 
     Mod+Tab hotkey-overlay-title=null repeat=false { toggle-overview; }
+
+    Mod+Escape { toggle-keyboard-shortcuts-inhibit;}
                 
     // App Launchers
     Mod+Shift+Return hotkey-overlay-title="Open Konsole 💻" { spawn "konsole"; }
@@ -126,8 +132,8 @@ binds {
     //"XF86Calculator".action = spawn ""; to be added
 
     // Screen capture
-    Print hotkey-overlay-title=null { screenshot-window; }
-    Mod+Shift+S hotkey-overlay-title=null { screenshot; }
+    Print hotkey-overlay-title=null { screenshot-screen show-pointer=false; }
+    Mod+Shift+S hotkey-overlay-title=null { screenshot show-pointer=false; }
 
     // Mouse & Trackpad Scroll Bindings
     Mod+WheelScrollDown hotkey-overlay-title=null cooldown-ms=50 { focus-workspace-down; }
@@ -144,8 +150,8 @@ binds {
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-"; }
     XF86AudioMute allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
     XF86AudioMicMute allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
-    XF86MonBrightnessUp allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase && ddcutil setvcp 10 + 5"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness decrease && ddcutil setvcp 10 - 5"; }
     XF86AudioPlay allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
     XF86AudioNext allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
     XF86AudioPrev allow-when-locked=true{ spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
@@ -162,6 +168,10 @@ binds {
     Mod+L hotkey-overlay-title="Lock screen 🔒" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
     Mod+Shift+P hotkey-overlay-title="Light/Dark toggle 🌗" { spawn "noctalia-shell" "ipc" "call" "darkMode" "toggle"; }
     Mod+Space hotkey-overlay-title="Open Control Center ⚙️" { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+    Mod+N hotkey-overlay-title="Show Notifications 🔔"  {spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
+    Mod+Shift+D hotkey-overlay-title="Toggle DND 🔕"  {spawn "noctalia-shell" "ipc" "call" "notifications" "toggleDND"; }
+    Mod+Shift+N hotkey-overlay-title="Clear Notifications 🗑️"  {spawn "noctalia-shell" "ipc" "call" "notifications" "clear"; }
+    
     
     // Back up for color change with the script
     // Mod+Shift+P { spawn "bash" "-c" "noctalia-shell ipc call darkMode toggle && plasma-apply-colorscheme -l | grep -q \"* afterburner-dark (current color scheme)\" && { plasma-apply-colorscheme afterburner-light; vicinae vicinae://theme/set/afterburnerLight; } || { plasma-apply-colorscheme afterburner-dark; vicinae vicinae://theme/set/afterburnerDark; }";}
@@ -196,9 +206,9 @@ layout {
     }
 
     struts {
-        left -2
-        right -2
-        top -2
+        left -4
+        right -4
+        top -4
         bottom -2
     }
 
@@ -322,13 +332,14 @@ debug {
 // Block out password managers from screencasts.
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^com.spotify.Client$"#
+    match app-id=r#"^com\.spotify\.Client$"#
 
     block-out-from "screencast"
 }
 
 window-rule {
     match app-id=r#"^Notion$"#
+    match app-id=r#"^eu\.betterbird\.Betterbird$"#
 
     open-on-workspace "two"
 }
@@ -362,15 +373,14 @@ layer-rule {
   place-within-backdrop true
 }
 
-spawn-sh-at-startup "QT_QPA_PLATFORMTHEME=gtk3 noctalia-shell"
-spawn-sh-at-startup "noctalia-shell ipc call lockScreen lock"
-spawn-at-startup "keepassxc"
-// spawn-at-startup "com.spotify.Client"
-spawn-at-startup "notion-app"
-// spawn-at-startup "slack"
-// spawn-at-startup "teams-for-linux"
+spawn-sh-at-startup "QT_QPA_PLATFORMTHEME=gtk3 noctalia-shell && noctalia-shell ipc call lockScreen lock"
 spawn-at-startup "firefox"
+spawn-at-startup "notion-app"
+spawn-at-startup "eu.betterbird.Betterbird"
 spawn-at-startup "wl-paste --watch cliphist store"
-// notion and thunderbird
+spawn-at-startup "slack"
+spawn-at-startup "teams-for-linux"
+spawn-at-startup "com.spotify.Client"
+spawn-at-startup "keepassxc"
 
 //include "./noctalia.kdl"

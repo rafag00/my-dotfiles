@@ -12,69 +12,72 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  #Added for NVIDIA GPU
+  #External monitor brightness control
+  hardware.i2c.enable = true;
+
+  #Added for GPU
 
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       libva
       intel-media-driver
-      nvidia-vaapi-driver
+      #nvidia-vaapi-driver
     ];
   };
+  #
+  #   hardware.nvidia = {
+  #     modesetting.enable = true;
+  #     open = false;
+  #     nvidiaSettings = true;
+  #   };
+  #
+  #   services.xserver.videoDrivers = ["nvidia"];
+  #
+  #   hardware.nvidia.prime = {
+  #     offload = {
+  #       enable = true;
+  #       enableOffloadCmd = true;
+  #     };
+  #     # Make sure to use the correct Bus ID values for your system!
+  #     intelBusId = "PCI:0:2:0";
+  #     nvidiaBusId = "PCI:01:0:0";
+  #     # amdgpuBusId = "PCI:54:0:0"; For AMD GPU
+  #   };
 
-  hardware.nvidia = {
-    modesetting.enable = true;
-    open = false;
-    nvidiaSettings = true;
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia.prime = {
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
-    # Make sure to use the correct Bus ID values for your system!
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:01:0:0";
-    # amdgpuBusId = "PCI:54:0:0"; For AMD GPU
-  };
-
-  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod"];
+  boot.initrd.availableKernelModules = ["xhci_pci" "thunderbolt" "vmd" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" "rtsx_pci_sdmmc"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/5ba56470-0069-464f-be97-266e69368513";
+    device = "/dev/mapper/cryptroot";
     fsType = "btrfs";
     options = ["subvol=root"];
   };
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/bfa86569-54c2-465a-b946-0dab5402539a";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/c9e44b4c-439f-493a-8f6e-fdb40f80390a";
 
   fileSystems."/.swapvol" = {
-    device = "/dev/disk/by-uuid/5ba56470-0069-464f-be97-266e69368513";
+    device = "/dev/mapper/cryptroot";
     fsType = "btrfs";
     options = ["subvol=swap"];
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/5B3E-6A75";
+    device = "/dev/disk/by-uuid/823F-27FF";
     fsType = "vfat";
     options = ["fmask=0077" "dmask=0077"];
   };
 
   fileSystems."/home" = {
-    device = "/dev/disk/by-uuid/5ba56470-0069-464f-be97-266e69368513";
+    device = "/dev/mapper/cryptroot";
     fsType = "btrfs";
     options = ["subvol=home"];
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-uuid/5ba56470-0069-464f-be97-266e69368513";
+    device = "/dev/mapper/cryptroot";
     fsType = "btrfs";
     options = ["subvol=nix"];
   };

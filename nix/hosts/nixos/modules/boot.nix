@@ -21,7 +21,7 @@ in {
     loader.efi.canTouchEfiVariables = true;
 
     initrd.luks.devices.cryptroot = {
-      device = "/dev/disk/by-uuid/bfa86569-54c2-465a-b946-0dab5402539a";
+      device = "/dev/disk/by-uuid/c9e44b4c-439f-493a-8f6e-fdb40f80390a";
       crypttabExtraOpts = ["tpm2-device=auto" "tpm2-measure-pcr=yes"];
     };
 
