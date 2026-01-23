@@ -18,11 +18,14 @@ environment {
     XWAYLAND_ENABLE "1"
     NIXOS_OZONE_WL "1"
     GTK_USE_PORTAL "1"
+    //GTK_THEME "Adwaita"
     GDK_SCALE "1"
     GDK_BACKEND "wayland"
     QT_AUTO_SCREEN_SCALE_FACTOR "1"
     QT_QPA_PLATFORM "wayland"
     QT_QPA_PLATFORMTHEME "kde"
+    //QT_QPA_PLATFORMTHEME "qt6ct"
+    //QT_QPA_PLATFORMTHEME_QT6 "qt6ct"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     MOZ_ENABLE_WAYLAND "1"
     XDG_MENU_PREFIX "plasma-"
@@ -72,7 +75,7 @@ binds {
     Mod+Shift+2 { move-column-to-workspace "two"; }
     Mod+Shift+3 { move-column-to-workspace "three"; }
     Mod+Shift+4 { move-column-to-workspace "chat"; }
-    Mod+Shift+A { move-column-to-workspace "misc"; }
+    Mod+Shift+5 { move-column-to-workspace "misc"; }
     Mod+Shift+6 { move-column-to-workspace 6; }
     Mod+Shift+7 { move-column-to-workspace 7; }
     Mod+Shift+8 { move-column-to-workspace 8; }
@@ -86,8 +89,8 @@ binds {
     Mod+Shift+Up { move-window-up-or-to-workspace-up; }
     Mod+Ctrl+Down hotkey-overlay-title=null { move-column-to-workspace-down; }
     Mod+Ctrl+Up hotkey-overlay-title=null { move-column-to-workspace-up; }
-    Mod+Ctrl+Shift+Right { move-window-to-monitor-right; }
-    Mod+Ctrl+Shift+Left { move-window-to-monitor-left; }
+    Mod+Ctrl+Shift+Right { move-workspace-to-monitor-right; }
+    Mod+Ctrl+Shift+Left { move-workspace-to-monitor-left; }
     
 
     // Unify or expel columns with each other
@@ -114,6 +117,8 @@ binds {
 
     Mod+F hotkey-overlay-title="Toggle window floating 〰" { toggle-window-floating; }
 
+    //Mod+P { toggle-window-pinned; } // To see when pinned windows add added
+
     Mod+Ctrl+F hotkey-overlay-title=null { switch-focus-between-floating-and-tiling; }
 
     Mod+Tab hotkey-overlay-title=null repeat=false { toggle-overview; }
@@ -126,6 +131,7 @@ binds {
     Mod+B hotkey-overlay-title="Open Browser 🌐" { spawn "firefox"; }
     Mod+E hotkey-overlay-title="Open File Explorer 📂" { spawn "dolphin"; }
     Alt+Space hotkey-overlay-title="App Launcher 🚀" { spawn "vicinae" "toggle"; }
+    Alt+Shift+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle" ; }
     XF86Search { spawn "vicinae" "toggle"; }
 
 
@@ -178,6 +184,7 @@ binds {
 
     // Misc
     Mod+Shift+Slash hotkey-overlay-title=null { show-hotkey-overlay; }
+    //Mod+Ctrl+Shift+Slash hotkey-overlay-title=null {spawn "noctalia-shell" "ipc" "call" "plugin:keybind-cheatsheet" "toggle";}
     Ctrl+Alt+Delete hotkey-overlay-title="Exit niri ❌"{ quit; }
 }
 
@@ -254,6 +261,7 @@ layout {
         offset x=0 y=4
     }
 } 
+
 
 recent-windows {
 
@@ -333,29 +341,30 @@ debug {
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^com\.spotify\.Client$"#
+    match app-id=r#"^com\.rtosta\.zapzap$"#
 
     block-out-from "screencast"
 }
 
 window-rule {
-    match app-id=r#"^Notion$"#
-    match app-id=r#"^eu\.betterbird\.Betterbird$"#
+    match at-startup=true app-id=r#"^Notion$"#
+    match at-startup=true app-id=r#"^eu\.betterbird\.Betterbird$"#
 
     open-on-workspace "two"
 }
 
 // Apps to open on chat
 window-rule {
-    match app-id=r#"^Slack$"#
-    match app-id=r#"^teams-for-linux$"#
+    match at-startup=true app-id=r#"^Slack$"#
+    match at-startup=true app-id=r#"^teams-for-linux$"#
 
     open-on-workspace "chat"
 }
 
 // Apps to open on misc
 window-rule {
-    match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^Spotify$"#
+    match at-startup=true app-id=r#"^org\.keepassxc\.KeePassXC$"#
+    match at-startup=true app-id=r#"^Spotify$"#
 
     open-on-workspace "misc"
 }
@@ -373,7 +382,7 @@ layer-rule {
   place-within-backdrop true
 }
 
-spawn-sh-at-startup "QT_QPA_PLATFORMTHEME=gtk3 noctalia-shell && noctalia-shell ipc call lockScreen lock"
+spawn-sh-at-startup "QT_QPA_PLATFORMTHEME=gtk4 noctalia-shell"
 spawn-at-startup "firefox"
 spawn-at-startup "notion-app"
 spawn-at-startup "eu.betterbird.Betterbird"
@@ -382,5 +391,73 @@ spawn-at-startup "slack"
 spawn-at-startup "teams-for-linux"
 spawn-at-startup "com.spotify.Client"
 spawn-at-startup "keepassxc"
+
+
+animations {
+    slowdown 1.15
+
+    workspace-switch {
+        spring damping-ratio=0.85 stiffness=700 epsilon=0.0001
+    }
+
+    horizontal-view-movement {
+         spring damping-ratio=0.85 stiffness=700 epsilon=0.0001
+    }
+
+    window-movement {
+        spring damping-ratio=0.65 stiffness=300 epsilon=0.0001
+    }
+
+
+    window-open {
+      duration-ms 175
+      curve "ease-out-quad"
+      custom-shader r"
+        vec4 zoom_in(vec3 coords_geo, vec3 size_geo) {
+          float progress = niri_clamped_progress;
+          float scale = progress;
+          vec2 coords = (coords_geo.xy - vec2(0.5, 0.5)) * size_geo.xy;
+          coords = coords / scale;
+          coords_geo = vec3(coords / size_geo.xy + vec2(0.5, 0.5), 1.0);
+          vec3 coords_tex = niri_geo_to_tex * coords_geo;
+          vec4 color = texture2D(niri_tex, coords_tex.st);
+          color.a *= progress;
+
+          return color;
+        }
+        vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+          return zoom_in(coords_geo, size_geo);
+        }
+      "
+    }
+
+    // Original by Lemmy: https://github.com/ItsLemmy
+    window-close {
+      duration-ms 200
+      curve "linear"
+      custom-shader r"
+        vec4 fall_and_rotate(vec3 coords_geo, vec3 size_geo) {
+          float progress = niri_clamped_progress * niri_clamped_progress;
+          vec2 coords = (coords_geo.xy - vec2(0.5, 1.0)) * size_geo.xy;
+          coords.y -= progress * 1440.0;
+          float random = (niri_random_seed - 0.5) / 2.0;
+          random = sign(random) - random;
+          float max_angle = 0.5 * random;
+          float angle = progress * max_angle;
+          mat2 rotate = mat2(cos(angle), -sin(angle), sin(angle), cos(angle));
+          coords = rotate * coords;
+          coords_geo = vec3(coords / size_geo.xy + vec2(0.5, 1.0), 1.0);
+          vec3 coords_tex = niri_geo_to_tex * coords_geo;
+          vec4 color = texture2D(niri_tex, coords_tex.st);
+          color.a *= (1.0 - progress);
+
+          return color;
+        }
+        vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+          return fall_and_rotate(coords_geo, size_geo);
+        }
+      "
+    }
+}
 
 //include "./noctalia.kdl"

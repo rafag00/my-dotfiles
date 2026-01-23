@@ -9,6 +9,7 @@
     ./niri.nix
     ./plasma.nix
     ./sddm.nix
+    #./silentSDDM.nix
     ./sound.nix
     ./system.nix
     ./user.nix

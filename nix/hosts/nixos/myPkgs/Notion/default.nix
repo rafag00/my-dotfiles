@@ -7,7 +7,7 @@
   makeWrapper,
   autoPatchelfHook,
   electron_37-bin,
-  pkgver ? "6.3.2",
+  pkgver ? "7.0.0",
   bettersqlite3ver ? "12.4.0",
   bufferutilver ? "4.0.9",
   electronModuleVer ? "136",
@@ -21,7 +21,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://desktop-release.notion-static.com/Notion%20Setup%20${pkgver}.exe";
-    sha256 = "b279b934260125f69ccdf1051894d531741e7ea516c91ca55d4b134a41a6696b";
+    sha256 = "0a121aa2204332420bb5dadd5247f165d568281df218e84a7c753fa92ce6df4c";
   };
 
   betterSqlite = fetchurl {

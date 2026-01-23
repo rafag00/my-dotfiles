@@ -1,5 +1,4 @@
 {...}: {
-  # At the moment only works for one screen
   services = {
     hypridle = {
       enable = true;
@@ -16,7 +15,7 @@
           }
           {
             timeout = 600; # 10 min
-            on-timeout = "niri msg output eDP-1 off && niri msg output HDMI-A-1 off && noctalia-shell ipc call lockScreen lock";
+            on-timeout = "noctalia-shell ipc call lockScreen lock && niri msg output eDP-1 off && niri msg output HDMI-A-1 off";
             on-resume = "niri msg output eDP-1 on && niri msg output HDMI-A-1 on";
           }
           {

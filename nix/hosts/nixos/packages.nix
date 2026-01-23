@@ -25,6 +25,7 @@
         fastfetch
         fzf
         git
+        gnumake
         nano
         nix-bash-completions
         #oh-my-posh
@@ -44,10 +45,6 @@
         home-manager
         gpu-screen-recorder
 
-        # For sddm-astronaut
-        kdePackages.qtsvg
-        kdePackages.qtmultimedia
-        kdePackages.qtvirtualkeyboard
         kdePackages.kwallet
         kdePackages.kwallet-pam
 
@@ -65,6 +62,7 @@
     ])
     ++ [
       (pkgs.callPackage ./myPkgs/Notion {})
+      (pkgs.callPackage ./myPkgs/qt6ct-kde {})
     ];
 
   fonts.packages = with pkgs; [

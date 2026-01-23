@@ -26,6 +26,7 @@
       ];
       packages = with pkgs; [
         # Desktop apps
+        brave
         docker
         github-desktop
         gnome-text-editor

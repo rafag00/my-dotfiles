@@ -10,22 +10,24 @@
   #networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
-  services.resolved.enable = true;
+  services.resolved.enable = false;
 
   networking = {
     hostName = "${host}";
 
+    resolvconf.enable = true;
+
     networkmanager = {
       enable = true;
-      dns = "systemd-resolved";
+      #dns = "none";
+      dns = "default";
       plugins = with pkgs; [
         networkmanager-openvpn
       ];
-      connectionConfig."ipv4.ignore-auto-dns" = true;
-      connectionConfig."ipv6.ignore-auto-dns" = true;
     };
 
     useDHCP = false;
+    dhcpcd.enable = false;
 
     nameservers = [
       "1.1.1.1"
@@ -33,6 +35,17 @@
       "208.67.222.222"
       "208.67.220.220"
     ];
+
+    extraHosts = ''
+      # 213.30.51.243 proxy.onemnef.com
+      # 213.30.51.243 capif.onesource.dev register.onesource.dev
+      # 213.30.51.243 invoker-app.n-app.com
+      # 213.30.51.243 proxy-open5gs.com
+      10.2.0.90 proxy.onemnef.com
+      10.2.0.90 capif.onesource.dev register.onesource.dev
+      10.2.0.90 invoker-app.n-app.com
+      10.2.0.90 proxy-open5gs.com
+    '';
 
     # Open ports in the firewall.
     #networking.firewall.allowedTCPPorts = [ 22 ];
@@ -42,6 +55,9 @@
 
     # Enabled for KDE Connect
     firewall = rec {
+      #trustedInterfaces = ["docker0"];
+      #checkReversePath = false;
+
       allowedTCPPortRanges = [
         {
           from = 1714;

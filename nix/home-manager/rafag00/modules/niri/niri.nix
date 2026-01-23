@@ -29,8 +29,10 @@ in {
     wl-clipboard
     cliphist
     gnome-keyring
+    adwaita-icon-theme #some missing in apps
 
     xdg-desktop-portal-gnome
+    kdePackages.xdg-desktop-portal-kde
 
     kdePackages.polkit-kde-agent-1
     kdePackages.knewstuff
@@ -43,12 +45,12 @@ in {
     kdePackages.kservice
     kdePackages.qtwayland
     kdePackages.systemsettings
+    kdePackages.breeze
+    kdePackages.kirigami
 
     glib
     brightnessctl
     ddcutil
-    # kdePackages.qtstyleplugin-kvantum
-    # libsForQt5.qt5ct
   ];
 
   #xdg.configFile."niri/config.kdl".text = finalConfig;
