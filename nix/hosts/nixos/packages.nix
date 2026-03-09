@@ -18,17 +18,16 @@
         # CLI utils
         bash
         bash-completion
+        bat
         bluez
         bluez-tools
         btop
-        eza
         fastfetch
-        fzf
         git
         gnumake
         nano
         nix-bash-completions
-        #oh-my-posh
+        wget
         rclone
         ripgrep # Improved Grep
         unrar # Tool For Handling .rar Files
@@ -45,9 +44,7 @@
         home-manager
         gpu-screen-recorder
 
-        kdePackages.kwallet
-        kdePackages.kwallet-pam
-
+        # Nix
         nh
       ]
     )

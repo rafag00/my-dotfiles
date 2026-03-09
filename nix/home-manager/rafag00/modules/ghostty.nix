@@ -40,7 +40,10 @@
       cursor-style = "bar";
       cursor-style-blink = true;
       cursor-click-to-move = true;
-      shell-integration-features = "no-cursor";
+      shell-integration-features = [
+        "no-cursor"
+        "ssh-env"
+      ];
 
       keybind = [
         "alt+s>up=new_split:up"

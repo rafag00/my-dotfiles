@@ -29,7 +29,7 @@
         brave
         docker
         github-desktop
-        gnome-text-editor
+        kdePackages.ghostwriter
         qalculate-qt
         haruna
         keepassxc
@@ -53,10 +53,14 @@
         lazygit
         lazydocker
 
+        # Ipod shuffle
+        rhythmbox
+        libgpod
+
         # Work apps
         libreoffice
         slack
-        teams-for-linux
+        #teams-for-linux
         zotero
         zoom-us
 
@@ -72,11 +76,16 @@
         # Development libs
         alejandra
         uv
+        devenv
       ];
     };
   };
 
   #programs.bash.blesh.enable = true;
+  programs.direnv = {
+    enable = true;
+    silent = true;
+  };
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "rafag00";

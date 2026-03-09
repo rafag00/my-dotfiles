@@ -10,6 +10,8 @@
       "dev.vencord.Vesktop"
       "eu.betterbird.Betterbird"
       "com.rtosta.zapzap"
+      "com.github.emmanueltouzery.projectpad"
+      "com.github.IsmaelMartinez.teams_for_linux"
     ];
   };
 }

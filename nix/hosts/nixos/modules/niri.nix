@@ -29,11 +29,14 @@
     };
 
     xdg.portal.config.niri = {
-      default = ["gnome" "gtk"];
-      "org.freedesktop.impl.portal.ScreenCast" = "gnome";
-      "org.freedesktop.impl.portal.Screenshot" = "gnome";
-      "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
-      "org.freedesktop.impl.portal.FileChooser" = "kde";
+      default = ["gnome" "gtk"]; # If changed conflicts with the package and would need lib.mkForce to change
+      # "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+      # "org.freedesktop.impl.portal.Screenshot" = "gnome";
+      # "org.freedesktop.impl.portal.RemoteDesktop" = "gnome";
+      "org.freedesktop.impl.portal.ScreenCast" = "gtk";
+      "org.freedesktop.impl.portal.Screenshot" = "gtk";
+      "org.freedesktop.impl.portal.RemoteDesktop" = "gtk";
+      # "org.freedesktop.impl.portal.FileChooser" = "kde";
     };
 
     security.pam.services.sddm.enableGnomeKeyring = true;

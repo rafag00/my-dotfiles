@@ -1,8 +1,16 @@
-{config, ...}: let
+{
+  config,
+  inputs,
+  ...
+}: let
   noctalia-afterburner = builtins.readFile ./${"Afterburner.json"};
   ghostty-afterburner-dark = builtins.readFile ./${"Afterburner-dark"};
   ghostty-afterburner-light = builtins.readFile ./${"Afterburner-light"};
 in {
+  imports = [
+    inputs.noctalia.homeModules.default
+  ];
+
   #xdg.configFile."noctalia/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/home-manager/rafag00/modules/noctalia/settings.json";
 
   # Noctalia colors - doesn't work

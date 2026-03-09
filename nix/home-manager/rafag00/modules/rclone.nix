@@ -8,6 +8,7 @@
     shellAliases = {
       "reload-rclone" = "systemctl --user restart rCloneMounts.service";
       "status-rclone" = "systemctl --user status rCloneMounts.service";
+      "stop-rclone" = "systemctl --user stop rCloneMounts.service";
     };
   };
 
@@ -16,13 +17,16 @@
       Description = "Mount all rClone configurations";
       After = ["network-online.target"];
       Wants = ["network-online.target"];
-      Restart = "on-failure";
-      RestartSec = 10;
     };
     Service = let
       home = config.home.homeDirectory;
     in {
+      # Type = "simple";
       Type = "forking";
+      Restart = "on-failure";
+      # Restart=always;
+      RestartSec = 10;
+
       ExecStartPre = "${pkgs.writeShellScript "rClonePre" ''
         remotes=$(${pkgs.rclone}/bin/rclone --config=${home}/.config/rclone/rclone.conf listremotes)
         for remote in $remotes;

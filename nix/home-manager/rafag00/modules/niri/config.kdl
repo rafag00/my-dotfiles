@@ -89,6 +89,8 @@ binds {
     Mod+Shift+Up { move-window-up-or-to-workspace-up; }
     Mod+Ctrl+Down hotkey-overlay-title=null { move-column-to-workspace-down; }
     Mod+Ctrl+Up hotkey-overlay-title=null { move-column-to-workspace-up; }
+    Mod+Ctrl+Shift+Up hotkey-overlay-title=null { move-workspace-up; }
+    Mod+Ctrl+Shift+Down hotkey-overlay-title=null { move-workspace-down; }
     Mod+Ctrl+Shift+Right { move-workspace-to-monitor-right; }
     Mod+Ctrl+Shift+Left { move-workspace-to-monitor-left; }
     
@@ -192,7 +194,7 @@ layout {
 
     gaps 6
 
-    center-focused-column "on-overflow"
+    center-focused-column "never"
     always-center-single-column
 
     background-color "transparent"
@@ -347,6 +349,12 @@ window-rule {
 }
 
 window-rule {
+    match at-startup=true app-id=r#"^firefox$"#
+
+    open-on-workspace "one"
+}
+
+window-rule {
     match at-startup=true app-id=r#"^Notion$"#
     match at-startup=true app-id=r#"^eu\.betterbird\.Betterbird$"#
 
@@ -356,7 +364,7 @@ window-rule {
 // Apps to open on chat
 window-rule {
     match at-startup=true app-id=r#"^Slack$"#
-    match at-startup=true app-id=r#"^teams-for-linux$"#
+    match at-startup=true app-id=r#"^com\.github\.IsmaelMartinez\.teams_for_linux$"#
 
     open-on-workspace "chat"
 }
@@ -364,7 +372,7 @@ window-rule {
 // Apps to open on misc
 window-rule {
     match at-startup=true app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match at-startup=true app-id=r#"^Spotify$"#
+    match at-startup=true app-id=r#"^spotify$"#
 
     open-on-workspace "misc"
 }
@@ -382,13 +390,14 @@ layer-rule {
   place-within-backdrop true
 }
 
-spawn-sh-at-startup "QT_QPA_PLATFORMTHEME=gtk4 noctalia-shell"
+spawn-sh-at-startup "QT_QPA_PLATFORMTHEME=gtk3 noctalia-shell"
+spawn-sh-at-startup "reload-rclone"
 spawn-at-startup "firefox"
 spawn-at-startup "notion-app"
 spawn-at-startup "eu.betterbird.Betterbird"
 spawn-at-startup "wl-paste --watch cliphist store"
-spawn-at-startup "slack"
-spawn-at-startup "teams-for-linux"
+spawn-sh-at-startup "sleep 10 && slack"
+spawn-sh-at-startup "sleep 10 && com.github.IsmaelMartinez.teams_for_linux"
 spawn-at-startup "com.spotify.Client"
 spawn-at-startup "keepassxc"
 

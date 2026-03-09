@@ -5,8 +5,6 @@
   ...
 }: {
   imports = [
-    inputs.noctalia.homeModules.default
-    inputs.vicinae.homeManagerModules.default
     ./modules
   ];
 

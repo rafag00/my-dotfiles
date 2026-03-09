@@ -41,7 +41,7 @@
           "type": "nix-shell",
           "style": "plain",
           "powerline_symbol": "\ue0b0",
-          "template": "{{ if ne .Type \"unknown\" }}via <p:accent>\uf313 nix-{{ .Type }}</>{{ end }} ",
+          "template": "{{ if ne .Type \"unknown\" }}via <p:accent>\uf313 {{ if and .Env.name (ne .Env.name \"nix-shell\") }}{{ .Env.name }}{{ else }}nix-{{ .Type }}{{ end }}</>{{ end }} ",
           "foreground": "p:fg"
         },
         {
@@ -76,9 +76,7 @@
           "type": "status",
           "style": "plain",
           "foreground": "p:success",
-          "foreground_templates": [
-            "{{ if gt .Code 0 }}p:error{{ end }}"
-          ],
+          "foreground_templates": ["{{ if gt .Code 0 }}p:error{{ end }}"],
           "template": "{{ if gt .Code 0 }}\u2717{{ else }}\u2713{{ end }} ",
           "options": {
             "always_enabled": true
