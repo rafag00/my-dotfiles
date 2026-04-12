@@ -20,6 +20,7 @@
     users.${username} = {
       isNormalUser = true;
       extraGroups = [
+        "i2c"
         "docker"
         "networkmanager"
         "wheel"
@@ -36,6 +37,7 @@
         kdePackages.okular
         kdePackages.ark
         kdePackages.gwenview
+        kdePackages.filelight
 
         # Dolphin dependencies
         kdePackages.dolphin

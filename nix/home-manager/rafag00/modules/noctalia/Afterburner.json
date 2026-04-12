@@ -21,8 +21,8 @@
       "foreground": "#cbd5e1",
       "cursor": "#94a3b8",
       "cursorText": "#0f1113",
-      "selectionBackground": "#334155",
-      "selectionForeground": "#f8fafc",
+      "selectionBg": "#334155",
+      "selectionFg": "#f8fafc",
       "normal": {
         "black": "#0f1113",
         "red": "#e11d48",
@@ -67,8 +67,8 @@
       "foreground": "#1f2937",
       "cursor": "#4b5563",
       "cursorText": "#d1d5db",
-      "selectionBackground": "#9ca3af",
-      "selectionForeground": "#111827",
+      "selectionBg": "#9ca3af",
+      "selectionFg": "#111827",
       "normal": {
         "black": "#d1d5db",
         "red": "#991b1b",

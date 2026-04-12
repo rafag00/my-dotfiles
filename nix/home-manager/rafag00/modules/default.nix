@@ -16,5 +16,6 @@
     ./vscode.nix
     #./starship.nix
     #./dankMaterialShell.nix
+    ./yazi.nix
   ];
 }

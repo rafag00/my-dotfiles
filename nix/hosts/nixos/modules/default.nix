@@ -14,6 +14,7 @@
     ./system.nix
     ./user.nix
     ./xserver.nix
-    ./zram.nix
+    #./zram.nix # using instead zswap because https://chrisdown.name/2026/03/24/zswap-vs-zram-when-to-use-what.html
+    ./zswap.nix
   ];
 }

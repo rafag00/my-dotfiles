@@ -101,9 +101,11 @@ binds {
 
     Mod+Shift+R hotkey-overlay-title="Maximize column ⌞ ⌝" { maximize-column; }
 
-    Mod+R hotkey-overlay-title="Switch window height ↔" { switch-preset-column-width; }
+    Mod+R hotkey-overlay-title="Switch window width ↔" { switch-preset-column-width; }
 
     Mod+Ctrl+R hotkey-overlay-title="Switch window height ↕" { switch-preset-window-height; }
+
+    Mod+Ctrl+Shift+R hotkey-overlay-title=null { set-window-height "100%"; }
 
     Mod+Shift+F hotkey-overlay-title="Fullscreen window ⛶" { fullscreen-window; }
 
@@ -144,10 +146,12 @@ binds {
     Mod+Shift+S hotkey-overlay-title=null { screenshot show-pointer=false; }
 
     // Mouse & Trackpad Scroll Bindings
-    Mod+WheelScrollDown hotkey-overlay-title=null cooldown-ms=50 { focus-workspace-down; }
-    Mod+WheelScrollUp hotkey-overlay-title=null cooldown-ms=50 { focus-workspace-up; }
-    Mod+Shift+WheelScrollDown cooldown-ms=50 { focus-column-right; }
-    Mod+Shift+WheelScrollUp cooldown-ms=50 { focus-column-left; }
+    Mod+Shift+WheelScrollDown hotkey-overlay-title=null cooldown-ms=50 { focus-workspace-down; }
+    Mod+Shift+WheelScrollUp hotkey-overlay-title=null cooldown-ms=50 { focus-workspace-up; }
+    Mod+WheelScrollUp cooldown-ms=50 { focus-column-left; }
+    Mod+WheelScrollDown cooldown-ms=50 { focus-column-right; }
+    Mod+Ctrl+WheelScrollUp hotkey-overlay-title=null cooldown-ms=50 { focus-monitor-right; }
+    Mod+Ctrl+WheelScrollDown hotkey-overlay-title=null cooldown-ms=50 { focus-monitor-left; }
     Mod+WheelScrollRight cooldown-ms=50 { focus-column-right; }
     Mod+WheelScrollLeft cooldown-ms=50 { focus-column-left; }
 
@@ -160,9 +164,13 @@ binds {
     XF86AudioMicMute allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "volume" "muteInput"; }
     XF86MonBrightnessUp allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness increase && ddcutil setvcp 10 + 5"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn-sh "noctalia-shell ipc call brightness decrease && ddcutil setvcp 10 - 5"; }
+    Mod+XF86MonBrightnessUp allow-when-locked=true { spawn-sh "ddcutil setvcp 10 + 5"; }
+    Mod+XF86MonBrightnessDown allow-when-locked=true { spawn-sh "ddcutil setvcp 10 - 5"; }
+    Mod+Shift+XF86MonBrightnessUp allow-when-locked=true { spawn-sh "case $(cat /sys/class/leds/platform::kbd_backlight/brightness) in 0) brightnessctl --device='platform::kbd_backlight' set 1 ;; 1) brightnessctl --device='platform::kbd_backlight' set 2 ;; 2) brightnessctl --device='platform::kbd_backlight' set 0 ;; esac"; }
     XF86AudioPlay allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "playPause"; }
     XF86AudioNext allow-when-locked=true { spawn "noctalia-shell" "ipc" "call" "media" "next"; }
     XF86AudioPrev allow-when-locked=true{ spawn "noctalia-shell" "ipc" "call" "media" "previous"; }
+    XF86Calculator {spawn "qalculate-qt"; }
 
     //"Mod".action.spwan = "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; // At the moment niri doesn't support release key
 
@@ -342,7 +350,7 @@ debug {
 // Block out password managers from screencasts.
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
-    match app-id=r#"^com\.spotify\.Client$"#
+    match app-id=r#"^spotify$"#
     match app-id=r#"^com\.rtosta\.zapzap$"#
 
     block-out-from "screencast"
@@ -391,13 +399,13 @@ layer-rule {
 }
 
 spawn-sh-at-startup "QT_QPA_PLATFORMTHEME=gtk3 noctalia-shell"
-spawn-sh-at-startup "reload-rclone"
+// spawn-sh-at-startup "reload-rclone"
 spawn-at-startup "firefox"
 spawn-at-startup "notion-app"
 spawn-at-startup "eu.betterbird.Betterbird"
 spawn-at-startup "wl-paste --watch cliphist store"
-spawn-sh-at-startup "sleep 10 && slack"
 spawn-sh-at-startup "sleep 10 && com.github.IsmaelMartinez.teams_for_linux"
+spawn-sh-at-startup "sleep 10 && slack"
 spawn-at-startup "com.spotify.Client"
 spawn-at-startup "keepassxc"
 

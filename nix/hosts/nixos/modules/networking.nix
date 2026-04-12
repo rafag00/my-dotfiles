@@ -41,10 +41,10 @@
       # 213.30.51.243 capif.onesource.dev register.onesource.dev
       # 213.30.51.243 invoker-app.n-app.com
       # 213.30.51.243 proxy-open5gs.com
-      10.2.0.90 proxy.onemnef.com
-      10.2.0.90 capif.onesource.dev register.onesource.dev
-      10.2.0.90 invoker-app.n-app.com
-      10.2.0.90 proxy-open5gs.com
+      10.2.0.89 proxy.onemnef.com
+      10.2.0.89 capif.onesource.dev register.onesource.dev
+      10.2.0.89 invoker-app.n-app.com
+      10.2.0.89 proxy-open5gs.com
     '';
 
     # Open ports in the firewall.

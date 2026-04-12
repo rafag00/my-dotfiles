@@ -23,9 +23,10 @@
     settings = {
       theme = "noctalia";
       window-decoration = "server";
-      window-inherit-working-directory = true;
+      window-inherit-working-directory = false;
+      tab-inherit-working-directory = true;
       window-save-state = "always";
-      shell-integration = "bash";
+      # shell-integration = "bash";
 
       # Mouse settings
       mouse-hide-while-typing = true;
