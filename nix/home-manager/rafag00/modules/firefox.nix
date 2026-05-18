@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   home.packages = [
     (let
       # Use the same firefox package your system uses
@@ -18,6 +22,8 @@
 
   programs.firefox = {
     enable = true;
+
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
 
     languagePacks = [
       "en-US"

@@ -51,6 +51,19 @@ in {
     glib
     brightnessctl
     ddcutil
+
+    # For the noctalia screen toolkit
+    grim
+    slurp
+    tesseract
+    imagemagick
+    zbar
+    curl
+    translate-shell
+    wl-screenrec
+    ffmpeg
+    gifski
+    jq
   ];
 
   #xdg.configFile."niri/config.kdl".text = finalConfig;

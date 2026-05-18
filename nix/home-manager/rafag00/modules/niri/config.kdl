@@ -138,12 +138,10 @@ binds {
     Alt+Shift+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle" ; }
     XF86Search { spawn "vicinae" "toggle"; }
 
-
-    //"XF86Calculator".action = spawn ""; to be added
-
     // Screen capture
     Print hotkey-overlay-title=null { screenshot-screen show-pointer=false; }
     Mod+Shift+S hotkey-overlay-title=null { screenshot show-pointer=false; }
+    Mod+Ctrl+S hotkey-overlay-title=null { screenshot-screen show-pointer=false; }
 
     // Mouse & Trackpad Scroll Bindings
     Mod+Shift+WheelScrollDown hotkey-overlay-title=null cooldown-ms=50 { focus-workspace-down; }
@@ -175,10 +173,10 @@ binds {
     //"Mod".action.spwan = "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; // At the moment niri doesn't support release key
 
     // Vicinae
-    Mod+Period hotkey-overlay-title="Emojis 🤠" { spawn "vicinae" "vicinae://extensions/vicinae/core/search-emojis";}
-    Mod+Comma hotkey-overlay-title="Gifts 🎞️" { spawn "vicinae" "vicinae://extensions/josephschmitt/gif-search/search"; }
-    Mod+Shift+B hotkey-overlay-title="Power profiles 🔋" { spawn "vicinae" "vicinae://extensions/botkooper/power-profile/power-profile"; }
-    Mod+H hotkey-overlay-title="Clipboard history 📋" { spawn "vicinae" "vicinae://extensions/vicinae/clipboard/history"; }
+    Mod+Period hotkey-overlay-title="Emojis 🤠" { spawn "vicinae" "vicinae://launch/core/search-emojis";}
+    Mod+Comma hotkey-overlay-title="Gifts 🎞️" { spawn "vicinae" "vicinae://launch/@josephschmitt/store.raycast.gif-search/search"; }
+    Mod+Shift+B hotkey-overlay-title="Power profiles 🔋" { spawn "vicinae" "vicinae://launch/@botkooper/store.vicinae.power-profile/power-profile"; }
+    Mod+H hotkey-overlay-title="Clipboard history 📋" { spawn "vicinae" "vicinae://launch/clipboard/history"; }
     
     // Noctalia
     Mod+L hotkey-overlay-title="Lock screen 🔒" { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
@@ -187,6 +185,7 @@ binds {
     Mod+N hotkey-overlay-title="Show Notifications 🔔"  {spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
     Mod+Shift+D hotkey-overlay-title="Toggle DND 🔕"  {spawn "noctalia-shell" "ipc" "call" "notifications" "toggleDND"; }
     Mod+Shift+N hotkey-overlay-title="Clear Notifications 🗑️"  {spawn "noctalia-shell" "ipc" "call" "notifications" "clear"; }
+    Mod+S {spawn "noctalia-shell" "ipc" "call" "plugin:screen-toolkit" "toggle";}
     
     
     // Back up for color change with the script
@@ -270,18 +269,15 @@ layout {
         color "#00000055"
         offset x=0 y=4
     }
-} 
-
+}
 
 recent-windows {
-
     highlight {
         active-color "#263248" 
         urgent-color "#ff3b3b"
         padding 30
         corner-radius 10
     }
-
 }
 
 prefer-no-csd
@@ -336,11 +332,6 @@ switch-events {
 window-rule {
     geometry-corner-radius 0
     clip-to-geometry true
-}
-
-layer-rule {
-    match namespace="^quickshell-overview$"
-    place-within-backdrop true
 }
 
 debug {

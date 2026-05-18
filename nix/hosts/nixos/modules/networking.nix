@@ -1,6 +1,7 @@
 {
   pkgs,
   host,
+  config,
   ...
 }: {
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -36,16 +37,17 @@
       "208.67.220.220"
     ];
 
-    extraHosts = ''
-      # 213.30.51.243 proxy.onemnef.com
-      # 213.30.51.243 capif.onesource.dev register.onesource.dev
-      # 213.30.51.243 invoker-app.n-app.com
-      # 213.30.51.243 proxy-open5gs.com
-      10.2.0.89 proxy.onemnef.com
-      10.2.0.89 capif.onesource.dev register.onesource.dev
-      10.2.0.89 invoker-app.n-app.com
-      10.2.0.89 proxy-open5gs.com
-    '';
+    # extraHosts = ''
+    #   # 213.30.51.243 proxy.onemnef.com
+    #   # 213.30.51.243 capif.onesource.dev register.onesource.dev
+    #   # 213.30.51.243 invoker-app.n-app.com
+    #   # 213.30.51.243 proxy-open5gs.com
+    #   10.2.0.89 proxy.onemnef.com
+    #   10.2.0.89 capif.onesource.dev register.onesource.dev
+    #   10.2.0.89 invoker-app.n-app.com
+    #   10.2.0.89 proxy-open5gs.com
+    #   93.108.226.52 6g-versus-git.lis.ipn.pt
+    # '';
 
     # Open ports in the firewall.
     #networking.firewall.allowedTCPPorts = [ 22 ];
@@ -67,4 +69,8 @@
       allowedUDPPortRanges = allowedTCPPortRanges;
     };
   };
+
+  # This can lead to errors in first start because there is no /etc/hosts file
+  # Disable first and then copy what was generated
+  environment.etc."hosts".enable = false; #To allow using the hosts like a normal distro
 }

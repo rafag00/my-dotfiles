@@ -4,7 +4,10 @@
   inputs,
   ...
 }: {
-  imports = [inputs.home-manager.nixosModules.home-manager];
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    inputs.nix-index-database.nixosModules.default
+  ];
 
   home-manager = {
     extraSpecialArgs = {inherit inputs;};
@@ -30,7 +33,6 @@
         brave
         docker
         github-desktop
-        kdePackages.ghostwriter
         qalculate-qt
         haruna
         keepassxc
@@ -54,6 +56,8 @@
         vscode
         lazygit
         lazydocker
+        gemini-cli-bin
+        codex
 
         # Ipod shuffle
         rhythmbox
@@ -88,6 +92,8 @@
     enable = true;
     silent = true;
   };
+
+  programs.nix-index-database.comma.enable = true;
 
   # Enable automatic login for the user.
   services.getty.autologinUser = "rafag00";

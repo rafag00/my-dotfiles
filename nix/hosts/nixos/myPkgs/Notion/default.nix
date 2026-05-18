@@ -6,11 +6,11 @@
   asar,
   makeWrapper,
   autoPatchelfHook,
-  electron_39-bin,
-  pkgver ? "7.6.1",
-  bettersqlite3ver ? "12.6.2",
+  electron_40-bin,
+  pkgver ? "7.12.0",
+  bettersqlite3ver ? "12.9.0",
   bufferutilver ? "4.0.9",
-  electronModuleVer ? "140",
+  electronModuleVer ? "143",
   icon ? ./notion.png,
   desktopFile ? ./notion.desktop,
   wrapper ? ./notion-app,
@@ -21,12 +21,12 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://desktop-release.notion-static.com/Notion%20Setup%20${pkgver}.exe";
-    sha256 = "56aa093a8b8a0815a525ad974d85b9120e1b586302aaa8c7183d7c761f124d14";
+    sha256 = "1624a4d131142efe902e182fedb03908e427bc3a2bc3073b3188ed1a187c98b3";
   };
 
   betterSqlite = fetchurl {
     url = "https://github.com/WiseLibs/better-sqlite3/releases/download/v${bettersqlite3ver}/better-sqlite3-v${bettersqlite3ver}-electron-v${electronModuleVer}-linux-x64.tar.gz";
-    sha256 = "5be42e5403bbba23ef38315b1c4e3ff08c154ed3c64a9952a0ad344f30fc6dc8";
+    sha256 = "ebc8c2a8b71ec46c67ace20b0a291058d603a93aaf17c8fd25b63ee05a129e04";
   };
 
   bufferUtil = fetchurl {
@@ -42,7 +42,7 @@ stdenv.mkDerivation rec {
   ];
 
   buildInputs = [
-    electron_39-bin
+    electron_40-bin
     stdenv.cc.cc.lib
     # zlib           # Uncomment if you get zlib errors later
   ];
@@ -117,7 +117,7 @@ stdenv.mkDerivation rec {
     #  - Set the correct notion lib path
     #  - Fixes the database error in NixOS by adding the system lib path to LD_LIBRARY_PATH
     substituteInPlace "$out/bin/notion-app" \
-      --replace "electron39" "${electron_39-bin}/bin/electron" \
+      --replace "electron39" "${electron_40-bin}/bin/electron" \
       --replace "/usr/lib/notion-app" "$outLib" \
       --replace "# Launch" "export LD_LIBRARY_PATH=\$LD_LIBRARY_PATH:${lib.makeLibraryPath [stdenv.cc.cc.lib]}
     cd \"$outLib\"

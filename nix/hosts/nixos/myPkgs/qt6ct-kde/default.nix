@@ -39,7 +39,7 @@ stdenv.mkDerivation rec {
       name = "qt6ct-shenanigans.patch";
       url = "https://aur.archlinux.org/cgit/aur.git/plain/qt6ct-shenanigans.patch?h=qt6ct-kde";
       # Updated with the 'got' hash from your previous error message
-      hash = "sha256-odCe+7fPnIQtOrPqYAS15rm+wsedy6zjwnieUZSfxp0=";
+      hash = "sha256-b/s033yBLyl2zTaqhIGgh0zk+1IQS/EIPalYuJXt8uI=";
     })
   ];
 

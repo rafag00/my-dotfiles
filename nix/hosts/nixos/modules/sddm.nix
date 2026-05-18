@@ -20,7 +20,23 @@
     theme-overrides = {
       "LoginScreen.LoginArea.Avatar" = {
         shape = "circle";
-        active-border-color = "#94a3b8";
+        active-border-color = "#07070B";
+        inactive-border-color = "#07070B";
+      };
+      "LoginScreen.LoginArea.Username" = {
+        color = "#07070B";
+      };
+      "LoginScreen.LoginArea.PasswordInput" = {
+        content-color = "#07070B";
+        background-color = "#94a3b8";
+        border-color = "#07070B";
+      };
+      "LoginScreen.LoginArea.LoginButton" = {
+        background-color = "#07070B";
+        active-background-color = "#07070B";
+        content-color = "#07070B";
+        active-content-color = "#94a3b8";
+        border-color = "#07070B";
       };
       "LoginScreen" = {
         background = "${afterburner.name}";
@@ -29,10 +45,39 @@
         background = "${afterburner.name}";
       };
       "LockScreen.Clock" = {
-        color = "#94a3b8";
+        color = "#07070B";
+        #ff8c00
+        #94a3b8
       };
       "LockScreen.Date" = {
-        color = "#94a3b8";
+        color = "#07070B";
+      };
+      "LoginScreen.MenuArea.Popups" = {
+        background-color = "#07070B";
+        active-option-background-color = "#BD7952";
+        content-color = "#BD7952";
+        active-content-color = "#07070B";
+        border-color = "#BD7952";
+      };
+      "LoginScreen.MenuArea.Session" = {
+        background-color = "#BD7952";
+        content-color = "#BD7952";
+        active-content-color = "#07070B";
+      };
+      "LoginScreen.MenuArea.Layout" = {
+        background-color = "#BD7952";
+        content-color = "#BD7952";
+        active-content-color = "#07070B";
+      };
+      "LoginScreen.MenuArea.Keyboard" = {
+        background-color = "#BD7952";
+        content-color = "#BD7952";
+        active-content-color = "#07070B";
+      };
+      "LoginScreen.MenuArea.Power" = {
+        background-color = "#BD7952";
+        content-color = "#BD7952";
+        active-content-color = "#07070B";
       };
     };
   };
